@@ -1,0 +1,47 @@
+{
+  "_readme": [
+    "One entry per state, keyed by the slug used in the homepage map links.",
+    "Only states listed here get a page built. Add entries as you research them.",
+    "",
+    "FIELD NOTES",
+    "  refCity      Climate figures describe one reference city, not a whole state.",
+    "               Name it honestly - a Boston number does not describe the Berkshires.",
+    "  janLow       Coldest-month average low, deg F. Source: NOAA 1991-2020 normals.",
+    "  julHigh      Warmest-month average high, deg F. Same source.",
+    "  designTemp   ASHRAE 99% winter design temperature, deg F. This is the number that",
+    "               actually governs heat pump sizing. Leave null until you have a real",
+    "               figure - the stat is omitted from the page when null rather than guessed.",
+    "  hpShare      Percent of homes using a heat pump as PRIMARY heat. Null omits the stat.",
+    "  episodes     Match strings against the live RSS feed - an episode guid, or any",
+    "               distinctive fragment of the episode title. Empty array renders",
+    "               placeholder slots instead."
+  ],
+
+  "massachusetts": {
+    "name": "Massachusetts",
+    "abbr": "MA",
+    "refCity": "Boston",
+    "climateSource": "NOAA 1991–2020 normals",
+    "janLow": 24,
+    "julHigh": 82,
+    "designTemp": null,
+    "hpShare": 4,
+    "hpShareYear": 2020,
+    "hpShareSource": "EIA RECS 2020",
+    "intro": "Massachusetts has old housing stock, expensive winter fuel, and one of the most generous rebate programs in the country. That combination makes it one of the most interesting places in America to put in a heat pump — and one of the easiest to get wrong.",
+    "coldNote": "Cold-climate heat pumps are rated to hold full output well below zero. The question here is not whether one works, it is whether yours was sized and installed for the coldest night of the year.",
+    "incentives": [
+      {
+        "name": "Mass Save",
+        "note": "Statewide efficiency program. Rebates for whole-home and partial heat pump installs, plus 0% HEAT Loans.",
+        "url": "https://www.masssave.com/residential/rebates-and-incentives"
+      },
+      {
+        "name": "Federal 25C tax credit",
+        "note": "Annual credit toward a qualifying heat pump. Check current-year limits before you file.",
+        "url": "https://www.irs.gov/credits-deductions/energy-efficient-home-improvement-credit"
+      }
+    ],
+    "episodes": []
+  }
+}

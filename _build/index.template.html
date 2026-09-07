@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heat Pump Guides — a podcast about heat pumps, and help getting one installed</title>
+<meta name="description" content="Interviews with homeowners who switched to a heat pump and the contractors who installed them. Browse episodes by state and get connected to an installer near you.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta property="og:title" content="Heat Pump Guides">
+<meta property="og:description" content="Interviews with homeowners who switched to a heat pump and the contractors who installed them.">
+<meta property="og:type" content="website">
+<link rel="alternate" type="application/rss+xml" title="Heat Pump Guides podcast" href="https://anchor.fm/s/f8c1cc3c/podcast/rss">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/Manrope-ExtraBold.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/Manrope-Regular.woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#episodes">Skip to episodes</a>
+
+<!-- logo, defined once and referenced in the header and footer -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <linearGradient id="hpgTop" x1="0" y1="0" x2="662.881" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+    </linearGradient>
+    <linearGradient id="hpgBot" x1="662.881" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+    </linearGradient>
+  </defs>
+  <symbol id="hpg" viewBox="0 0 663 80">{{LOGO_GLYPHS}}
+    <path d="M662.881 7.67119H0V0H662.881V7.67119Z" fill="url(#hpgTop)"/>
+    <path d="M0 80H662.881V72.3288H0V80Z" fill="url(#hpgBot)"/>
+  </symbol>
+</svg>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" aria-label="Heat Pump Guides — home">
+      <svg class="logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
+    </a>
+    <nav class="hdr-nav">
+      <a class="hdr-link" href="#episodes">Episodes</a>
+      <a class="hdr-link" href="#states">States</a>
+      <a class="hdr-cta" href="https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ" target="_blank" rel="noopener">Listen</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ hero ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">The Heat Pump Guides podcast</p>
+        <h1>Ask someone who <span class="warm">already has one.</span></h1>
+        <p class="hero-sub">Interviews with homeowners who made the switch and the contractors who did the work — what it cost, how it holds up in a cold snap, and what they'd do differently. Then we help you find an installer in your state.</p>
+        <div class="hero-btns">
+          <a class="btn btn--solid" href="#episodes" data-play-latest>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Play the latest episode
+          </a>
+          <a class="btn btn--ghost" href="#states">Find your state</a>
+        </div>
+      </div>
+
+      <figure>
+        <!-- The signature: one machine, run in both directions by a reversing valve. -->
+        <div class="rig is-heat" id="rig">
+          <svg class="rig-svg" viewBox="0 0 620 380" role="img" aria-labelledby="rigTitle rigDesc">
+            <title id="rigTitle">How a heat pump works</title>
+            <desc id="rigDesc">A heat pump moves heat between the outside air and the house. In heating mode it carries heat indoors; in cooling mode the same machine runs in reverse and carries heat back out.</desc>
+
+            <!-- thermal haze: whichever side is currently being warmed or cooled -->
+            <ellipse class="haze haze-in" cx="150" cy="228" rx="104" ry="78"/>
+            <ellipse class="haze haze-out" cx="481" cy="216" rx="104" ry="86"/>
+
+            <line class="ground" x1="6" y1="302" x2="614" y2="302"/>
+
+            <!-- house -->
+            <path class="shell" d="M46 142 L162 58 L278 142 V302 H46 Z"/>
+            <!-- indoor head unit -->
+            <rect class="unit" x="78" y="170" width="126" height="48" rx="10"/>
+            <line class="vent" x1="94" y1="208" x2="188" y2="208"/>
+
+            <!-- outdoor unit -->
+            <rect class="unit" x="406" y="150" width="150" height="140" rx="13"/>
+            <rect class="unit" x="394" y="290" width="174" height="10" rx="3"/>
+            <circle class="fan-hub" cx="481" cy="208" r="46"/>
+            <g class="fan">
+              <path class="blade" d="M481 208 C469 188 476 170 495 168"/>
+              <path class="blade" d="M481 208 C499 219 503 237 490 250"/>
+              <path class="blade" d="M481 208 C461 213 447 202 449 183"/>
+            </g>
+            <circle class="fan-hub" cx="481" cy="208" r="7"/>
+            <line class="vent" x1="424" y1="264" x2="538" y2="264"/>
+            <line class="vent" x1="424" y1="276" x2="538" y2="276"/>
+
+            <!-- refrigerant lines -->
+            <path class="pipe-bed" d="M406 200 H336 C310 200 310 182 284 182 H204"/>
+            <path class="pipe-bed" d="M204 206 H284 C310 206 310 244 336 244 H406"/>
+            <path class="pipe pipe-in"  d="M406 200 H336 C310 200 310 182 284 182 H204"/>
+            <path class="pipe pipe-out" d="M204 206 H284 C310 206 310 244 336 244 H406"/>
+
+            <!-- air leaving the indoor coil -->
+            <g class="puffs">
+              <path class="puff puff-in" d="M172 222 L154 232 L172 242"/>
+              <path class="puff puff-in" d="M172 246 L154 256 L172 266"/>
+              <path class="puff puff-in" d="M172 270 L154 280 L172 290"/>
+            </g>
+            <!-- air leaving the outdoor coil -->
+            <g class="puffs">
+              <path class="puff puff-out" d="M566 178 L584 190 L566 202"/>
+              <path class="puff puff-out" d="M566 208 L584 220 L566 232"/>
+              <path class="puff puff-out" d="M566 238 L584 250 L566 262"/>
+            </g>
+
+            <text class="cap" x="162" y="332" text-anchor="middle">INSIDE</text>
+            <text class="readout" id="tIn" x="162" y="360" text-anchor="middle">68°F</text>
+            <text class="cap" x="481" y="332" text-anchor="middle">OUTSIDE</text>
+            <text class="readout" id="tOut" x="481" y="360" text-anchor="middle">23°F</text>
+          </svg>
+        </div>
+
+        <figcaption class="rig-modes" role="group" aria-label="Heat pump mode">
+          <button class="rig-mode rig-mode--heat" type="button" data-mode="heat" aria-pressed="true">Heating</button>
+          <button class="rig-mode rig-mode--cool" type="button" data-mode="cool" aria-pressed="false">Cooling</button>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ episodes ============ -->
+  <section class="sec" id="episodes" aria-labelledby="epH">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Episodes</p>
+          <h2 class="h2" id="epH">Recent episodes</h2>
+        </div>
+        <p class="live" id="epStatus">Synced from the podcast feed</p>
+      </div>
+
+      <div id="epLatest"></div>
+      <ul class="ep-list" id="epList"></ul>
+
+      <noscript>
+        <ul class="ep-list">{{EPS_NOSCRIPT}}</ul>
+      </noscript>
+    </div>
+  </section>
+
+  <hr class="rule rule--flip">
+
+  <!-- ============ states ============ -->
+  <section class="sec" id="states" aria-labelledby="stH">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">By location</p>
+          <h2 class="h2" id="stH">Heat pumps in your state</h2>
+          <p class="lede">Rebates, permitting and winter design temperatures all change at the state line. Pick yours to hear the episodes recorded there.</p>
+        </div>
+      </div>
+      <div class="map-shell">{{US_MAP}}</div>
+      <!-- Below tablet the map's shapes are too small to tap; this list takes over. -->
+      <ul class="st-grid">{{STATE_LIST}}</ul>
+      <p class="map-foot">50 states + DC</p>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <svg class="logo ft-logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
+        <p class="ft-tag">A podcast about the most efficient heating and cooling technology we have — and how to actually get one installed.</p>
+      </div>
+      <div class="ft-socials">{{SOCIALS}}</div>
+    </div>
+    <div class="ft-base">
+      <p>© <span id="yr">2026</span> Heat Pump Guides</p>
+      <nav class="ft-links">
+        <a href="/privacy-policy">Privacy</a>
+        <a href="/terms-of-service">Terms</a>
+        <a href="https://anchor.fm/s/f8c1cc3c/podcast/rss" target="_blank" rel="noopener">RSS</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>window.__EPS__ = {{EPS_JSON}};</script>
+<script src="script.js" defer></script>
+</body>
+</html>
