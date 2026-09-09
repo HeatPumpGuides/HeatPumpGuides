@@ -32,13 +32,17 @@ your-repo/                     <- repo root = site root
 ├── .nojekyll                  <- tells Pages to serve files as-is
 ├── .gitignore
 ├── CNAME                      <- custom domain (delete if not using one)
+├── favicon.ico                <- must sit at the root; browsers request it by path
 ├── index.html                 <- homepage
 ├── styles.css                 <- every page shares this
 ├── script.js                  <- homepage only
 ├── state.js                   <- state pages only
 ├── DEPLOY.md
 ├── assets/
-│   ├── favicon.png
+│   ├── icon.svg               <- primary favicon; vector, flips black/white by theme
+│   ├── favicon-32.png         <- fallback for browsers without SVG favicon support
+│   ├── apple-touch-icon.png   <- 180px, iOS home screen (must stay raster)
+│   ├── favicon.png            <- original bitmap artwork, kept as the source
 │   └── fonts/                 <- 6 .woff2 files, all self-hosted
 ├── massachusetts/
 │   └── index.html

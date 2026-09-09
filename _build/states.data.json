@@ -11,35 +11,743 @@
     "  designTemp   ASHRAE 99% winter design temperature, deg F. This is the number that",
     "               actually governs heat pump sizing. Leave null until you have a real",
     "               figure - the stat is omitted from the page when null rather than guessed.",
-    "  hpShare      Percent of homes using a heat pump as PRIMARY heat. Null omits the stat.",
+    "",
+    "  hpShare      Percent of homes whose MAIN heating equipment is a heat pump, with",
+    "               central heat pumps and ductless mini-splits counted together.",
+    "               Figures for all 51 jurisdictions: heatpump-adoption-by-state.json,",
+    "               computed from RECS 2020 microdata (see _method in that file).",
+    "               Do NOT use EIA's published state highlights table - it counts CENTRAL",
+    "               heat pumps only and badly undercounts mini-split states.",
+    "               RECS 2024 publishes no space heating by state until spring 2027.",
+    "               Leave null to omit the hero bar rather than render a false zero.",
+    "  hpShareLabel Sentence after the number. Say exactly what was counted.",
+    "  hpShareNote  Small print under the bar. State the method's limits here.",
+    "  hpShareUrl   Link on the source label. Point at what actually supports the number.",
+    "",
     "  episodes     Match strings against the live RSS feed - an episode guid, or any",
     "               distinctive fragment of the episode title. Empty array renders",
     "               placeholder slots instead."
   ],
-
   "massachusetts": {
     "name": "Massachusetts",
     "abbr": "MA",
-    "refCity": "Boston",
-    "climateSource": "NOAA 1991–2020 normals",
-    "janLow": 24,
-    "julHigh": 82,
     "designTemp": null,
-    "hpShare": 4,
-    "hpShareYear": 2020,
-    "hpShareSource": "EIA RECS 2020",
     "intro": "Massachusetts has old housing stock, expensive winter fuel, and one of the most generous rebate programs in the country. That combination makes it one of the most interesting places in America to put in a heat pump — and one of the easiest to get wrong.",
-    "coldNote": "Cold-climate heat pumps are rated to hold full output well below zero. The question here is not whether one works, it is whether yours was sized and installed for the coldest night of the year.",
     "incentives": [
       {
         "name": "Mass Save",
-        "note": "Statewide efficiency program. Rebates for whole-home and partial heat pump installs, plus 0% HEAT Loans.",
+        "note": "Statewide efficiency program funded by the utilities, not by Washington — unaffected by the federal changes. Rebates for whole-home and partial heat pump installs, plus 0% HEAT Loans.",
         "url": "https://www.masssave.com/residential/rebates-and-incentives"
       },
       {
-        "name": "Federal 25C tax credit",
-        "note": "Annual credit toward a qualifying heat pump. Check current-year limits before you file.",
-        "url": "https://www.irs.gov/credits-deductions/energy-efficient-home-improvement-credit"
+        "name": "Federal Home Energy Rebates",
+        "note": "The IRA rebate programs (HEAR and HOMES) survived the 2025 tax changes and are administered state by state. Massachusetts has an active program; funding runs until it is depleted.",
+        "url": "https://www.energy.gov/scep/home-energy-rebates-programs"
+      }
+    ],
+    "episodes": []
+  },
+  "maine": {
+    "name": "Maine",
+    "abbr": "ME",
+    "designTemp": null,
+    "intro": "Maine is the most interesting heat pump story in America, and the headline number hides it. Only 4.4% of homes run a heat pump as their main heat — but 12.2% have one, the widest gap in the country. Mainers bought mini-splits by the hundred thousand and kept the oil boiler in the basement.",
+    "incentives": [
+      {
+        "name": "Efficiency Maine",
+        "note": "The state's efficiency trust, and the reason Maine leads the country on installs. Rebates for whole-home and single-room heat pumps, with larger amounts for low- and moderate-income households.",
+        "url": "https://www.efficiencymaine.com/heat-pumps/"
+      }
+    ],
+    "episodes": []
+  },
+  "vermont": {
+    "name": "Vermont",
+    "abbr": "VT",
+    "designTemp": null,
+    "intro": "Vermont has the coldest reference city on this site and a housing stock to match — old, leaky, and mostly heated by propane or oil trucked to the door. Just 1.8% of homes run a heat pump as their main system, though three times that many have one working alongside the existing boiler.",
+    "incentives": [
+      {
+        "name": "Efficiency Vermont",
+        "note": "The country's first statewide energy efficiency utility. Rebates on cold-climate heat pumps, plus income-based adders and financing.",
+        "url": "https://www.efficiencyvermont.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "new-hampshire": {
+    "name": "New Hampshire",
+    "abbr": "NH",
+    "designTemp": null,
+    "intro": "New Hampshire heats with oil more than almost anywhere else, and that shows up in the numbers: 2.4% of homes run a heat pump as their main heat, while 6.7% have one. The mini-split-beside-the-oil-boiler pattern is the New England default, and New Hampshire is a textbook case.",
+    "incentives": [
+      {
+        "name": "NHSaves",
+        "note": "The joint program of New Hampshire's electric and gas utilities. Heat pump rebates, home energy assessments, and low-interest financing.",
+        "url": "https://nhsaves.com/rebates/"
+      }
+    ],
+    "episodes": []
+  },
+  "connecticut": {
+    "name": "Connecticut",
+    "abbr": "CT",
+    "designTemp": null,
+    "intro": "Connecticut has among the lowest heat pump adoption in the country — 1.7% of homes use one as their main heat — despite expensive heating oil and an aggressive state target. The gap between what the policy wants and what is actually installed is wider here than almost anywhere.",
+    "incentives": [
+      {
+        "name": "Energize Connecticut",
+        "note": "The statewide initiative run with the utilities and the Connecticut Green Bank. Heat pump rebates, income-qualified programs, and low-interest loans.",
+        "url": "https://www.energizect.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "rhode-island": {
+    "name": "Rhode Island",
+    "abbr": "RI",
+    "designTemp": null,
+    "intro": "Small state, old houses, expensive winters. Rhode Island sits at 2.8% of homes running a heat pump as their main heat, with another 2.8% using one as a second system — mostly beside natural gas or oil. The whole state is one climate zone, which makes sizing advice unusually portable here.",
+    "incentives": [
+      {
+        "name": "Rhode Island Energy",
+        "note": "The state's utility runs the residential efficiency programs, including heat pump rebates and the Home Energy Assessment that usually has to come first.",
+        "url": "https://www.rienergy.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "new-york": {
+    "name": "New York",
+    "abbr": "NY",
+    "designTemp": null,
+    "intro": "New York is really several heating markets at once: gas-heated apartments downstate, oil and propane upstate, and a climate that ranges from Long Island to the Adirondacks. Statewide, 4.2% of homes run a heat pump as their main heat — better than its neighbours, and still early.",
+    "incentives": [
+      {
+        "name": "NYS Clean Heat",
+        "note": "The statewide heat pump program delivered through the utilities and coordinated by NYSERDA. Per-ton rebates for cold-climate air source and ground source systems.",
+        "url": "https://www.nyserda.ny.gov/All-Programs/NYS-Clean-Heat"
+      }
+    ],
+    "episodes": []
+  },
+  "new-jersey": {
+    "name": "New Jersey",
+    "abbr": "NJ",
+    "designTemp": null,
+    "intro": "New Jersey is a natural gas state — cheap, piped, and already in most basements, which is the single biggest obstacle to heat pump adoption here. Only 2.9% of homes use a heat pump as their main heat. The case for switching is usually about cooling and air quality as much as heating cost.",
+    "incentives": [
+      {
+        "name": "New Jersey's Clean Energy Program",
+        "note": "The statewide program funded through the Societal Benefits Charge. Heat pump rebates, whole-home retrofit incentives, and zero-interest financing.",
+        "url": "https://www.njcleanenergy.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "pennsylvania": {
+    "name": "Pennsylvania",
+    "abbr": "PA",
+    "designTemp": null,
+    "intro": "Pennsylvania has the highest heat pump adoption in the Northeast at 8.4% of homes — helped by a big share of housing that never had gas mains and went electric decades ago. It is also the state where finding a rebate takes the most work, because there is no single statewide program.",
+    "incentives": [
+      {
+        "name": "Penn Energy Savers",
+        "note": "Pennsylvania has no single statewide residential efficiency program — utility programs run separately under Act 129. The state's IRA-funded rebates are being set up by DEP under the Penn Energy Savers name; check the launch status before planning around them.",
+        "url": "https://www.pennenergysavers.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "michigan": {
+    "name": "Michigan",
+    "abbr": "MI",
+    "designTemp": null,
+    "intro": "Michigan is a natural gas state with a long, grey winter, and heat pump adoption to match — 1.9% of homes use one as their main heat, among the lowest in the country. Cheap piped gas is the obstacle, and the strongest case for switching here usually starts with the cooling you get thrown in.",
+    "incentives": [
+      {
+        "name": "Michigan Saves",
+        "note": "The nation's first nonprofit green bank. It does not pay rebates itself — it underwrites low-interest financing through authorised contractors. The rebates come from your utility, so check DTE or Consumers Energy alongside it.",
+        "url": "https://michigansaves.org/"
+      }
+    ],
+    "episodes": []
+  },
+  "minnesota": {
+    "name": "Minnesota",
+    "abbr": "MN",
+    "designTemp": null,
+    "intro": "Minneapolis has the second-coldest reference winter on this site at 9°F, and Minnesota sits at 2.0% of homes heating primarily with a heat pump. Cold-climate units are rated for this weather — the state's own rebate design assumes it — but the installed base is still tiny.",
+    "incentives": [
+      {
+        "name": "Save Energy Minnesota",
+        "note": "The Department of Commerce umbrella for the federal HOMES and HEAR rebates plus a state heat pump top-up. As of mid-2026 it had not launched and was still awaiting federal approval, so check its status before budgeting around it. Utility programs from Xcel and CenterPoint are running now.",
+        "url": "https://mn.gov/commerce/energy/consumer/energy-programs/home-energy-faq.jsp"
+      }
+    ],
+    "episodes": []
+  },
+  "wisconsin": {
+    "name": "Wisconsin",
+    "abbr": "WI",
+    "designTemp": null,
+    "intro": "Wisconsin has the lowest heat pump adoption of any state in the Midwest — 1.3% of homes, fifth-lowest in the country. That is not a climate problem; colder states do better. It is a gas and propane story, in a state where the alternative has always been cheap and already installed.",
+    "incentives": [
+      {
+        "name": "Focus on Energy",
+        "note": "Wisconsin's statewide efficiency program, funded by all the state's utilities and genuinely live. Rebates for cold-climate air source and geothermal heat pumps, with larger amounts for income-qualified households.",
+        "url": "https://focusonenergy.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "illinois": {
+    "name": "Illinois",
+    "abbr": "IL",
+    "designTemp": null,
+    "intro": "Illinois runs on natural gas, and at 2.4% of homes heating primarily with a heat pump it is near the bottom nationally. Chicago's winters are real but well within cold-climate equipment range — the barrier here is economic, not technical.",
+    "incentives": [
+      {
+        "name": "ComEd and Ameren Illinois",
+        "note": "Utility rebates are what is actually available in Illinois today — ComEd in the north, Ameren downstate. The state's IRA-funded rebates were still pending federal approval in mid-2026 and were not accepting applications.",
+        "url": "https://www.comed.com/ways-to-save"
+      },
+      {
+        "name": "Illinois Energy Office (DCEO)",
+        "note": "The state agency coordinating the federal rebate programs. Worth checking for launch status rather than assuming the money is available.",
+        "url": "https://dceo.illinois.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "ohio": {
+    "name": "Ohio",
+    "abbr": "OH",
+    "designTemp": null,
+    "intro": "Ohio sits at 5.7% of homes heating with a heat pump — well ahead of Michigan or Wisconsin despite a similar climate. A big share of Ohio housing sits off the gas main and went electric decades ago, which quietly made it heat pump country before anyone called it that.",
+    "incentives": [
+      {
+        "name": "Ohio Department of Development — Energy Programs",
+        "note": "Ohio has no comprehensive statewide efficiency program; utility offerings from AEP Ohio, Duke and others vary a lot by territory. The state runs income-qualified assistance and weatherisation, and is the right starting point if you qualify.",
+        "url": "https://energyhelp.ohio.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "indiana": {
+    "name": "Indiana",
+    "abbr": "IN",
+    "designTemp": null,
+    "intro": "Indiana has the highest heat pump adoption in the Midwest at 6.8% of homes — more than triple Michigan's rate, in a nearly identical climate. Rural Indiana never got gas mains, went electric, and heat pumps followed. It is a useful reminder that adoption tracks fuel access more than weather.",
+    "incentives": [
+      {
+        "name": "Indiana Office of Energy Development",
+        "note": "Indiana has no statewide residential efficiency program — rebates come from individual utilities such as AES Indiana, CenterPoint and Duke Energy Indiana. The state office is the clearest map of what exists.",
+        "url": "https://www.in.gov/oed/"
+      }
+    ],
+    "episodes": []
+  },
+  "iowa": {
+    "name": "Iowa",
+    "abbr": "IA",
+    "designTemp": null,
+    "intro": "Iowa gets genuinely cold — a 14°F average low in the coldest month — and 4.6% of homes heat primarily with a heat pump. The state cut its efficiency program budgets sharply in 2018, so what is on offer now comes mostly from the utilities rather than the state.",
+    "incentives": [
+      {
+        "name": "Iowa Economic Development Authority — Energy",
+        "note": "The state energy office. Iowa scaled back its ratepayer-funded efficiency programs in 2018, so the main rebates now come from MidAmerican Energy and Alliant Energy directly.",
+        "url": "https://www.iowaeda.com/energy/"
+      }
+    ],
+    "episodes": []
+  },
+  "south-carolina": {
+    "name": "South Carolina",
+    "abbr": "SC",
+    "designTemp": null,
+    "intro": "South Carolina has the highest heat pump adoption in America — 41.7% of homes. That is not a climate policy success story, it is an accident of history: you need air conditioning here regardless, much of the state never got gas mains, and the cheapest way to do both was one machine. The opportunity now is replacing tired old units, not converting anyone.",
+    "incentives": [
+      {
+        "name": "South Carolina Energy Office",
+        "note": "The state energy office, with a directory of utility rebates. Most residential incentives come from Dominion Energy South Carolina, Duke Energy or Santee Cooper depending on who serves you.",
+        "url": "https://energy.sc.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "alabama": {
+    "name": "Alabama",
+    "abbr": "AL",
+    "designTemp": null,
+    "intro": "Alabama runs second in the country at 39.2% of homes on a heat pump. Split between TVA territory in the north and Alabama Power in the south, it has had heat pumps as the default for decades. If you already have one, the live question is whether a modern variable-speed unit would cut the bill enough to justify replacing it early.",
+    "incentives": [
+      {
+        "name": "Alabama Power — Ways to Save",
+        "note": "Rebates and financing for high-efficiency heat pumps across most of the state. In northern Alabama, TVA's EnergyRight program covers homes served by local power companies instead.",
+        "url": "https://www.alabamapower.com/residential/ways-to-save.html"
+      }
+    ],
+    "episodes": []
+  },
+  "north-carolina": {
+    "name": "North Carolina",
+    "abbr": "NC",
+    "designTemp": null,
+    "intro": "North Carolina sits third nationally at 38.7% of homes. It is also one of the fastest-growing states in the country, which means a lot of that equipment went in with the house and is now hitting replacement age all at once. Charlotte's 32°F winter lows are well inside what any modern unit handles.",
+    "incentives": [
+      {
+        "name": "North Carolina State Energy Office",
+        "note": "Part of the Department of Environmental Quality. Coordinates the state's federal rebate programs and lists what utilities offer — Duke Energy runs the largest residential rebates here.",
+        "url": "https://www.deq.nc.gov/energy-climate/state-energy-office"
+      }
+    ],
+    "episodes": []
+  },
+  "tennessee": {
+    "name": "Tennessee",
+    "abbr": "TN",
+    "designTemp": null,
+    "intro": "Tennessee is fourth in the country at 35.5%, and almost the whole state buys power through TVA — which makes it unusually easy to find out what you qualify for. One programme, one set of rules, whichever local utility sends your bill.",
+    "incentives": [
+      {
+        "name": "TVA EnergyRight",
+        "note": "TVA runs efficiency programmes across its whole service territory through local power companies, including heat pump incentives and a network of vetted contractors — rare coverage for a Southern state.",
+        "url": "https://energyright.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "florida": {
+    "name": "Florida",
+    "abbr": "FL",
+    "designTemp": null,
+    "intro": "Florida is fifth in the country at 32.4% of homes, and the reason is simple: the coldest month in Miami averages a 61°F low. Heating is almost an afterthought here — a heat pump covers it without effort. Everything about sizing, efficiency and running cost in this state is decided by August, not January.",
+    "incentives": [
+      {
+        "name": "Florida Office of Energy",
+        "note": "Housed in the Department of Agriculture and Consumer Services. Florida has no comprehensive statewide efficiency programme, so the meaningful rebates come from your utility — FPL, Duke Energy Florida or TECO.",
+        "url": "https://www.fdacs.gov/Energy"
+      }
+    ],
+    "episodes": []
+  },
+  "mississippi": {
+    "name": "Mississippi",
+    "abbr": "MS",
+    "designTemp": null,
+    "intro": "Mississippi is sixth nationally at 29.6% of homes, and it also carries one of the heaviest energy burdens in the country — households here spend a larger share of income on power than almost anywhere. That combination makes an efficient replacement unit matter more here than the adoption figure suggests.",
+    "incentives": [
+      {
+        "name": "Entergy Solutions",
+        "note": "Entergy Mississippi's efficiency programme, with rebates on high-efficiency heat pumps and free assessments. Mississippi Power serves the southeast of the state and runs its own offerings.",
+        "url": "https://www.entergy-mississippi.com/energy-efficiency/"
+      }
+    ],
+    "episodes": []
+  },
+  "virginia": {
+    "name": "Virginia",
+    "abbr": "VA",
+    "designTemp": null,
+    "intro": "Virginia is really two heating markets: gas-heated suburbs in the north, and a rural south and west that went electric long ago. Statewide that averages out to 28.7% of homes on a heat pump — seventh in the country — but the number you actually live with depends a lot on which side of the state you are on.",
+    "incentives": [
+      {
+        "name": "Virginia Energy",
+        "note": "The state energy office, which coordinates Virginia's federal rebate programmes. Dominion Energy and Appalachian Power run the main utility rebates.",
+        "url": "https://energy.virginia.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "georgia": {
+    "name": "Georgia",
+    "abbr": "GA",
+    "designTemp": null,
+    "intro": "Georgia sits at 27.3% of homes — eighth nationally, and noticeably behind its neighbours despite a nearly identical climate. Atlanta's gas network is the difference: where the main reached, gas furnaces went in, and they are still there.",
+    "incentives": [
+      {
+        "name": "Georgia Environmental Finance Authority",
+        "note": "GEFA runs the state's energy programmes and low-interest financing. Georgia Power handles the main residential heat pump rebates, and the EMCs each run their own.",
+        "url": "https://gefa.georgia.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "colorado": {
+    "name": "Colorado",
+    "abbr": "CO",
+    "designTemp": null,
+    "intro": "Colorado has some of the most ambitious building-electrification policy in the country and one of the lowest heat pump adoption rates to go with it — 1.3% of homes, 48th of 51. Cheap natural gas explains most of the gap. The policy is pushing hard against a fuel that is still winning on price.",
+    "incentives": [
+      {
+        "name": "Colorado Energy Office",
+        "note": "Runs the state's heat pump tax credits and coordinates the federal rebate programmes. Colorado stacks state credits on top of utility rebates from Xcel and Black Hills, which is worth understanding before you buy.",
+        "url": "https://energyoffice.colorado.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "montana": {
+    "name": "Montana",
+    "abbr": "MT",
+    "designTemp": null,
+    "intro": "Montana sits at 2.5% of homes on a heat pump, in a state where winter is long and the housing is spread thin. Billings is the reference here, but a state this large has real climate variation — the mountain valleys are a different proposition from the eastern plains.",
+    "incentives": [
+      {
+        "name": "Montana DEQ — Energy",
+        "note": "The state energy office, covering weatherisation and efficiency assistance. Residential rebates mostly come from NorthWestern Energy or your local electric cooperative.",
+        "url": "https://deq.mt.gov/energy"
+      }
+    ],
+    "episodes": []
+  },
+  "wyoming": {
+    "name": "Wyoming",
+    "abbr": "WY",
+    "designTemp": null,
+    "intro": "Wyoming has the third-lowest heat pump adoption in the country at 1.0% of homes. The striking detail is what the few heat pumps here sit alongside: electric resistance heat. In a state with cheap power and expensive distances, plain electric baseboard has long been the default — and it is exactly what a heat pump replaces most profitably.",
+    "incentives": [
+      {
+        "name": "Wyoming Energy Authority",
+        "note": "The state energy agency. Wyoming has no statewide residential efficiency programme, so incentives come from Rocky Mountain Power, Black Hills Energy or your rural electric co-op.",
+        "url": "https://www.wyoenergy.org/"
+      }
+    ],
+    "episodes": []
+  },
+  "idaho": {
+    "name": "Idaho",
+    "abbr": "ID",
+    "designTemp": null,
+    "intro": "Idaho sits at 2.8% of homes on a heat pump, with cheap hydro power and a climate that swings hard — a 25°F average low in the coldest month, a 93°F average high in the warmest. That spread is a good argument for one machine doing both jobs.",
+    "incentives": [
+      {
+        "name": "Idaho Office of Energy and Mineral Resources",
+        "note": "The state energy office. Idaho Power and Avista run the main residential rebates, and both have specific heat pump offerings for homes on electric heat.",
+        "url": "https://oemr.idaho.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "utah": {
+    "name": "Utah",
+    "abbr": "UT",
+    "designTemp": null,
+    "intro": "Utah has cheap natural gas, fast-growing housing stock, and 1.9% of homes running a heat pump. Salt Lake City's summers now regularly clear 94°F, which is quietly changing the maths — a lot of Utah homes are buying cooling anyway, and that is the moment a heat pump makes sense.",
+    "incentives": [
+      {
+        "name": "Utah Office of Energy Development",
+        "note": "The state energy office. Rocky Mountain Power's Wattsmart programme runs the main residential heat pump rebates, with Dominion Energy handling gas-side efficiency.",
+        "url": "https://energy.utah.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "north-dakota": {
+    "name": "North Dakota",
+    "abbr": "ND",
+    "designTemp": null,
+    "intro": "Fargo has the coldest winter of any reference city on this site — an average low of 0°F in the coldest month. North Dakota sits at 1.5% of homes on a heat pump, and this is the climate where the cold-climate rating stops being a marketing term and starts being the entire specification.",
+    "incentives": [
+      {
+        "name": "North Dakota Department of Commerce",
+        "note": "North Dakota has no statewide residential efficiency programme. The Commerce department runs weatherisation assistance for income-qualified households; otherwise rebates come from Xcel Energy, Otter Tail Power, MDU or your co-op.",
+        "url": "https://www.commerce.nd.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "south-dakota": {
+    "name": "South Dakota",
+    "abbr": "SD",
+    "designTemp": null,
+    "intro": "South Dakota runs at 4.8% of homes on a heat pump — more than three times Colorado's rate, in a considerably colder climate. Sioux Falls averages an 8°F low in the coldest month. Where gas mains never reached, electric heat went in, and heat pumps followed the same wires.",
+    "incentives": [
+      {
+        "name": "South Dakota Public Utilities Commission",
+        "note": "South Dakota has no statewide efficiency programme. The PUC lists regulated utilities and their offerings — Xcel Energy, MidAmerican and NorthWestern all serve parts of the state, alongside a lot of rural co-ops.",
+        "url": "https://puc.sd.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "nebraska": {
+    "name": "Nebraska",
+    "abbr": "NE",
+    "designTemp": null,
+    "intro": "Nebraska is the strongest heat pump state in the Plains at 6.4% of homes, and it has something almost nowhere else does: every utility in the state is publicly owned. No investor-owned power company operates here, which makes the incentive landscape unusual and worth reading carefully.",
+    "incentives": [
+      {
+        "name": "Nebraska Department of Water, Energy and Environment",
+        "note": "The state energy office, which runs low-interest efficiency loans. Because Nebraska is entirely public power, rebates come from your local public district — NPPD, OPPD or LES — rather than a statewide programme.",
+        "url": "https://neo.ne.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "kansas": {
+    "name": "Kansas",
+    "abbr": "KS",
+    "designTemp": null,
+    "intro": "Kansas sits at 6.0% of homes on a heat pump, with a climate that punishes equipment at both ends — a 22°F average low in the coldest month against a 93°F average high in the warmest. Systems here get worked hard in both directions, and sizing for one season at the expense of the other shows up fast.",
+    "incentives": [
+      {
+        "name": "Evergy — Ways to Save",
+        "note": "Evergy serves most Kansas homes and runs the main residential rebates and efficiency programmes. Kansas has no statewide efficiency mandate, so what you can claim depends heavily on your utility.",
+        "url": "https://www.evergy.com/ways-to-save"
+      }
+    ],
+    "episodes": []
+  },
+  "california": {
+    "name": "California",
+    "abbr": "CA",
+    "designTemp": null,
+    "intro": "California has the most aggressive heat pump targets in the country and 4.2% of homes actually running one. Cheap piped natural gas is most of the explanation, and mild coastal winters are the rest — in much of the state the heating load is so small that nobody thinks hard about how it is met.",
+    "incentives": [
+      {
+        "name": "California Energy Commission — Residential Rebates",
+        "note": "The state coordinates the federal HOMES and HEAR rebates alongside TECH Clean California. Demand has been heavy: single-family HEEHRA reservations were fully committed statewide in early 2026, with later requests waitlisted. Check current availability before planning around it.",
+        "url": "https://www.energy.ca.gov/programs-and-topics/programs/inflation-reduction-act-residential-energy-rebate-programs"
+      }
+    ],
+    "episodes": []
+  },
+  "oregon": {
+    "name": "Oregon",
+    "abbr": "OR",
+    "designTemp": null,
+    "intro": "Oregon is the strongest heat pump state on the West Coast at 14.6% of homes — more than triple California's rate. Cheap hydro power meant a lot of Oregon housing went electric decades ago, and a mild, damp climate makes the equipment's job easy at both ends of the year.",
+    "incentives": [
+      {
+        "name": "Energy Trust of Oregon",
+        "note": "An independent nonprofit funded by ratepayers, serving customers of Portland General Electric, Pacific Power, NW Natural and Cascade. Heat pump cash incentives plus a vetted contractor network — one of the better-run programmes in the country.",
+        "url": "https://www.energytrust.org/"
+      }
+    ],
+    "episodes": []
+  },
+  "washington": {
+    "name": "Washington",
+    "abbr": "WA",
+    "designTemp": null,
+    "intro": "Washington sits at 13.1% of homes on a heat pump, and Seattle has the mildest summer of any reference city here — a 77°F average high in the warmest month. That used to mean air conditioning was optional. Recent heat waves have changed the conversation, and a heat pump is how most people are answering it.",
+    "incentives": [
+      {
+        "name": "Washington State Department of Commerce — Energy",
+        "note": "Coordinates the state's federal rebate programmes and weatherisation. The substantial residential rebates come from your utility — Puget Sound Energy, Seattle City Light and Avista all run heat pump offerings.",
+        "url": "https://www.commerce.wa.gov/energy/"
+      }
+    ],
+    "episodes": []
+  },
+  "nevada": {
+    "name": "Nevada",
+    "abbr": "NV",
+    "designTemp": null,
+    "intro": "Las Vegas has the hottest summers of any reference city on this site — a 104°F average high in the warmest month. Nevada sits at 7.6% of homes on a heat pump, and here the equipment lives or dies on how it performs in July, not January.",
+    "incentives": [
+      {
+        "name": "Nevada Governor's Office of Energy",
+        "note": "Runs state energy programmes and coordinates the federal rebates. NV Energy handles the main residential rebates for most of the state.",
+        "url": "https://energy.nv.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "arizona": {
+    "name": "Arizona",
+    "abbr": "AZ",
+    "designTemp": null,
+    "intro": "Arizona is ninth in the country at 26.4% of homes, which surprises people who think of heat pumps as a cold-climate technology. It is the opposite: Phoenix averages a 106°F high in the warmest month, every home needs cooling, and a heat pump is simply the air conditioner that also handles the mild winter.",
+    "incentives": [
+      {
+        "name": "Efficiency Arizona",
+        "note": "The state's federally funded rebate programme for efficient HVAC and appliances. It was warning of significant changes to its guidelines following federal action — applications were still open but under revised rules, so check the current terms first.",
+        "url": "https://efficiencyarizona.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "new-mexico": {
+    "name": "New Mexico",
+    "abbr": "NM",
+    "designTemp": null,
+    "intro": "New Mexico sits at 4.8% of homes on a heat pump. Albuquerque's high desert climate swings roughly 65 degrees between the coldest and warmest months, and the state's traditional answer — evaporative coolers, which only work while the air stays dry — is losing ground as summers get hotter and more humid.",
+    "incentives": [
+      {
+        "name": "New Mexico Energy Conservation and Management Division",
+        "note": "Part of the Energy, Minerals and Natural Resources Department. Runs state efficiency programmes; PNM and El Paso Electric handle the main utility rebates.",
+        "url": "https://www.emnrd.nm.gov/ecmd/"
+      }
+    ],
+    "episodes": []
+  },
+  "hawaii": {
+    "name": "Hawaii",
+    "abbr": "HI",
+    "designTemp": null,
+    "intro": "Hawaii is the one state where space heating barely exists as a category — Honolulu's coldest month still averages a 67°F low. Almost nobody heats a home here, which is why the heat pump figure is close to zero. The technology still matters enormously in Hawaii, just in a different appliance: heat pump water heaters, against the highest electricity prices in the nation.",
+    "incentives": [
+      {
+        "name": "Hawaii Energy",
+        "note": "The ratepayer-funded efficiency programme for Hawaii, Honolulu and Maui counties. Its heat pump incentives centre on water heating, which is where the savings are in this climate.",
+        "url": "https://hawaiienergy.com/"
+      }
+    ],
+    "episodes": []
+  },
+  "alaska": {
+    "name": "Alaska",
+    "abbr": "AK",
+    "designTemp": null,
+    "intro": "Alaska heats with oil and natural gas almost universally, and heat pumps are close to unheard-of as a primary system — though that is starting to shift in the milder southeast, where Juneau and Sitka have been installing them for years. Anchorage, the reference city here, averages an 8°F low in the coldest month.",
+    "incentives": [
+      {
+        "name": "Alaska Housing Finance Corporation",
+        "note": "AHFC runs the state's home energy rebate and weatherisation programmes, and its energy rating system is the standard reference for Alaskan housing.",
+        "url": "https://www.ahfc.us/"
+      }
+    ],
+    "episodes": []
+  },
+  "texas": {
+    "name": "Texas",
+    "abbr": "TX",
+    "designTemp": null,
+    "intro": "Texas runs at 19.8% of homes on a heat pump, though the state is really several climates stacked together — Houston's mild, humid winters have almost nothing in common with the Panhandle. Statewide, cooling drives every equipment decision, and the heating comes along for the ride.",
+    "incentives": [
+      {
+        "name": "Texas State Energy Conservation Office",
+        "note": "SECO sits within the Comptroller's office and coordinates state energy programmes. Texas has no statewide residential efficiency mandate, so rebates come from your utility or retail provider — offerings vary widely across the deregulated market.",
+        "url": "https://comptroller.texas.gov/programs/seco/"
+      }
+    ],
+    "episodes": []
+  },
+  "oklahoma": {
+    "name": "Oklahoma",
+    "abbr": "OK",
+    "designTemp": null,
+    "intro": "Oklahoma sits at 12.2% of homes on a heat pump, in a climate that demands a lot of equipment at both ends — a 27°F average low in the coldest month against a 93°F high in the warmest. Oklahoma City also sits in a part of the country where electricity has long been cheap relative to the alternatives.",
+    "incentives": [
+      {
+        "name": "Oklahoma Department of Commerce",
+        "note": "The state energy office. Oklahoma has no statewide efficiency programme; OG&E and Public Service Company of Oklahoma run the main residential rebates.",
+        "url": "https://www.okcommerce.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "arkansas": {
+    "name": "Arkansas",
+    "abbr": "AR",
+    "designTemp": null,
+    "intro": "Arkansas runs at 19.7% of homes on a heat pump. It sits on the boundary where the Southern pattern starts to take over — enough cooling demand that most homes need the equipment anyway, and enough winter that how well it heats still matters.",
+    "incentives": [
+      {
+        "name": "Arkansas Energy Office",
+        "note": "Part of the Arkansas Economic Development Commission, coordinating state energy programmes. Entergy Arkansas, Oklahoma Gas & Electric and the co-ops run the residential rebates.",
+        "url": "https://www.arkansasedc.com/energy-office"
+      }
+    ],
+    "episodes": []
+  },
+  "louisiana": {
+    "name": "Louisiana",
+    "abbr": "LA",
+    "designTemp": null,
+    "intro": "Louisiana is 12th in the country at 21.1% of homes, and New Orleans barely has a winter — a 46°F average low in the coldest month. What Louisiana does have is punishing summer humidity, which makes how a system handles moisture at least as important as how efficiently it cools.",
+    "incentives": [
+      {
+        "name": "Louisiana Department of Energy and Natural Resources",
+        "note": "The state energy office. Entergy Louisiana and Cleco run the main residential efficiency programmes, including heat pump incentives.",
+        "url": "https://www.dnr.louisiana.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "missouri": {
+    "name": "Missouri",
+    "abbr": "MO",
+    "designTemp": null,
+    "intro": "Missouri sits at 10.5% of homes on a heat pump — roughly midway between the electric-heated South and the gas-heated Midwest, which is a fair description of the state generally. St. Louis swings from a 24°F average low to a 90°F average high across the year.",
+    "incentives": [
+      {
+        "name": "Missouri Division of Energy",
+        "note": "Part of the Department of Natural Resources. Ameren Missouri and Evergy run the substantial residential rebates, including heat pump incentives for homes converting from electric resistance heat.",
+        "url": "https://dnr.mo.gov/energy"
+      }
+    ],
+    "episodes": []
+  },
+  "kentucky": {
+    "name": "Kentucky",
+    "abbr": "KY",
+    "designTemp": null,
+    "intro": "Kentucky is tenth in the country at 22.9% of homes, and it has one of the larger secondary-heat gaps outside New England — another 1.5% of homes run a mini-split alongside their main system. Cheap electricity and a lot of housing that never got a gas main explain most of the position.",
+    "incentives": [
+      {
+        "name": "Kentucky Office of Energy Policy",
+        "note": "The state energy office. Kentucky has no statewide efficiency programme; LG&E and KU, Duke Energy Kentucky and the co-ops each run their own residential offerings.",
+        "url": "https://eec.ky.gov/Energy"
+      }
+    ],
+    "episodes": []
+  },
+  "west-virginia": {
+    "name": "West Virginia",
+    "abbr": "WV",
+    "designTemp": null,
+    "intro": "West Virginia runs at 20.2% of homes on a heat pump, which surprises people who picture it as coal country. Much of the state's housing sits well away from a gas main and went electric decades ago — the same story as rural Indiana, in more difficult terrain.",
+    "incentives": [
+      {
+        "name": "West Virginia Office of Energy",
+        "note": "The state energy office, within the Division of Economic Development. Appalachian Power and Mon Power run the residential programmes; West Virginia has no statewide efficiency mandate.",
+        "url": "https://westvirginia.gov/energy/"
+      }
+    ],
+    "episodes": []
+  },
+  "maryland": {
+    "name": "Maryland",
+    "abbr": "MD",
+    "designTemp": null,
+    "intro": "Maryland sits at 19.7% of homes on a heat pump and has one of the better-funded efficiency programmes in the country behind it. The state spans tidewater and Appalachian climates, but Baltimore's 30°F average low in the coldest month is comfortably inside any modern unit's range.",
+    "incentives": [
+      {
+        "name": "EmPOWER Maryland",
+        "note": "The statewide efficiency programme, delivered through the utilities and coordinated by the Maryland Energy Administration. Heat pump rebates, income-qualified programmes and low-interest financing.",
+        "url": "https://energy.maryland.gov/"
+      }
+    ],
+    "episodes": []
+  },
+  "delaware": {
+    "name": "Delaware",
+    "abbr": "DE",
+    "designTemp": null,
+    "intro": "Delaware is 11th in the country at 21.6% of homes, and it has the largest secondary-heat gap outside New England — a further 2.5% run a mini-split beside their main system. For a state you can drive across in an hour, that is a lot of homes hedging their bets.",
+    "incentives": [
+      {
+        "name": "Energize Delaware",
+        "note": "An independent nonprofit funded by ratepayers and state programmes. Heat pump rebates, home energy assessments and low-interest loans, with larger amounts for income-qualified households.",
+        "url": "https://www.energizedelaware.org/"
+      }
+    ],
+    "episodes": []
+  },
+  "district-of-columbia": {
+    "name": "District of Columbia",
+    "abbr": "DC",
+    "designTemp": null,
+    "intro": "Washington sits at 15.0% of homes on a heat pump — respectable, though the District's housing is unusual: dense, old, much of it rowhouses and apartments where the equipment options are genuinely constrained. Ductless systems do a lot of the work here for exactly that reason.",
+    "incentives": [
+      {
+        "name": "DC Sustainable Energy Utility",
+        "note": "The District's ratepayer-funded efficiency utility. Heat pump rebates, income-qualified programmes and specific offerings for the small multifamily buildings that make up much of DC's housing.",
+        "url": "https://www.dcseu.com/"
       }
     ],
     "episodes": []

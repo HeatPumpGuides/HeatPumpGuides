@@ -553,3 +553,83 @@ body {
 }
 .cta h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 800; letter-spacing: -.03em; }
 .cta p { color: var(--muted); font-size: .9375rem; margin-top: .5rem; max-width: 52ch; }
+
+/* ---------- heat pump adoption bar (state hero) ----------
+   Solid brand blue on a quiet track. Deliberately not the red-to-blue gradient:
+   that pairing already means refrigerant temperature everywhere else on this
+   site, and at a 2% fill a gradient renders as a single indistinct sliver.
+   Blue also reads as progress; a red fill reads as a warning. */
+.adopt { margin-top: clamp(2rem, 4vw, 3rem); }
+.adopt-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .7rem; }
+.adopt-src { font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+a.adopt-src:hover { color: var(--blue-lit); }
+
+.adopt-bar {
+  position: relative; height: 22px; border-radius: 4px;
+  background: var(--ink-3);
+  border: 1px solid var(--hair);
+  overflow: hidden;
+}
+.adopt-fill {
+  position: absolute; inset: 0 auto 0 0;
+  min-width: 3px;                       /* keeps single-digit shares visible */
+  background: var(--blue-lit);
+  border-radius: 3px 0 0 3px;
+}
+/* quarter marks, so a small fill reads as distance-to-go rather than an error */
+.adopt-tick { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--hair); }
+
+.adopt-foot { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1.5rem; margin-top: .8rem; }
+.adopt-num { color: var(--muted); font-size: .9375rem; }
+.adopt-num b {
+  color: var(--frost); font-size: 1.75rem; font-weight: 800;
+  letter-spacing: -.03em; margin-right: .45rem;
+  font-variant-numeric: tabular-nums;
+}
+.adopt-goal { font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.adopt-note { color: var(--faint); font-size: .8125rem; margin-top: .6rem; max-width: 72ch; }
+
+/* standing note under the incentives list (federal credit status, DSIRE pointer) */
+.inc-note { color: var(--faint); font-size: .8125rem; margin-top: 1rem; max-width: 78ch; }
+.inc-note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.inc-note a:hover { color: var(--frost); }
+
+/* =========================================================================
+   Legal pages (/privacy, /terms)
+   Long-form prose: narrow measure, generous leading, sticky contents rail.
+   ========================================================================= */
+.legal-head { padding-block: clamp(2.25rem, 5vw, 3.5rem) clamp(1.5rem, 3vw, 2.25rem); }
+.legal-head h1 {
+  font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 800;
+  letter-spacing: -.045em; line-height: 1;
+}
+.legal-date { font-family: var(--mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); margin-top: .9rem; }
+
+.legal-sec { padding-block: clamp(2.5rem, 5vw, 4rem); }
+.legal-grid { display: grid; gap: clamp(2rem, 4vw, 3.5rem); grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 940px) { .legal-grid { grid-template-columns: 230px minmax(0, 1fr); } }
+
+.legal-toc { position: static; }
+@media (min-width: 940px) { .legal-toc { position: sticky; top: 100px; } }
+.legal-toc ul { margin-top: .9rem; display: grid; gap: .45rem; }
+.legal-toc a { font-size: .875rem; color: var(--muted); line-height: 1.4; display: block; }
+.legal-toc a:hover { color: var(--frost); }
+
+.legal { max-width: 68ch; }
+.legal > * + * { margin-top: 1.1rem; }
+.legal p { color: var(--muted); line-height: 1.75; }
+.legal strong { color: var(--frost); font-weight: 700; }
+.legal-intro { font-size: 1.125rem; color: var(--frost) !important; }
+.legal h2 {
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem); font-weight: 800;
+  letter-spacing: -.028em; line-height: 1.2; color: var(--frost);
+  margin-top: 2.75rem; padding-top: 1.5rem; border-top: 1px solid var(--hair);
+  scroll-margin-top: 96px;
+}
+.legal h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.legal h3 { font-size: 1rem; font-weight: 700; color: var(--frost); margin-top: 1.75rem; letter-spacing: -.015em; }
+.legal-list { display: grid; gap: .7rem; padding-left: 1.15rem; }
+.legal-list li { color: var(--muted); line-height: 1.7; list-style: disc; }
+.legal-list li::marker { color: var(--faint); }
+.legal a { color: var(--frost); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--hair-lit); }
+.legal a:hover { text-decoration-color: var(--red); }

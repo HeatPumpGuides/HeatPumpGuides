@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} — Heat Pump Guides</title>
+<meta name="description" content="{{META_DESC}}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://heatpumpguides.com/{{SLUG}}">
+<link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E13">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/Manrope-ExtraBold.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/Manrope-Regular.woff2" crossorigin>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<a class="skip" href="#legal-body">Skip to content</a>
+
+<!-- logo, defined once and referenced in the header and footer -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <linearGradient id="hpgTop" x1="0" y1="0" x2="662.881" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+    </linearGradient>
+    <linearGradient id="hpgBot" x1="662.881" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+    </linearGradient>
+  </defs>
+  <symbol id="hpg" viewBox="0 0 663 80">{{LOGO_GLYPHS}}
+    <path d="M662.881 7.67119H0V0H662.881V7.67119Z" fill="url(#hpgTop)"/>
+    <path d="M0 80H662.881V72.3288H0V80Z" fill="url(#hpgBot)"/>
+  </symbol>
+</svg>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" aria-label="Heat Pump Guides — home">
+      <svg class="logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
+    </a>
+    <nav class="hdr-nav">
+      <a class="hdr-link" href="/#episodes">Episodes</a>
+      <a class="hdr-link" href="/#states">States</a>
+      <a class="hdr-cta" href="https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ" target="_blank" rel="noopener">Listen</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="legal-head">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span>{{TITLE}}</span>
+      </nav>
+      <h1>{{TITLE}}</h1>
+      <p class="legal-date">Last updated {{UPDATED}}</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="sec legal-sec">
+    <div class="wrap legal-grid">
+      <nav class="legal-toc" aria-label="On this page">
+        <p class="eyebrow">On this page</p>
+        <ul>{{TOC}}</ul>
+      </nav>
+      <div class="legal" id="legal-body">{{BODY}}</div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <svg class="logo ft-logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
+        <p class="ft-tag">A podcast about the most efficient heating and cooling technology we have — and how to actually get one installed.</p>
+      </div>
+      <div class="ft-socials">{{SOCIALS}}</div>
+    </div>
+    <div class="ft-base">
+      <p>© <span id="yr">2026</span> Heat Pump Guides</p>
+      <nav class="ft-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="https://anchor.fm/s/f8c1cc3c/podcast/rss" target="_blank" rel="noopener">RSS</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

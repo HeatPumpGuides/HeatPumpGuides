@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+<title>Heat Pump Guides</title>
+<style>
+/* Traced from the HPG mark. The lettering follows the browser theme so it stays
+   legible on light and dark tab bars; the bars are brand colours and don't move. */
+.hpg-glyph { fill: #000000; }
+@media (prefers-color-scheme: dark) { .hpg-glyph { fill: #FFFFFF; } }
+</style>
+<defs>
+<linearGradient id="hpgA" x1="57" y1="0" x2="92" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+</linearGradient>
+<linearGradient id="hpgB" x1="92" y1="0" x2="57" y2="0" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+</linearGradient>
+</defs>
+<rect x="10" y="28" width="130" height="10" fill="url(#hpgA)"/>
+<rect x="10" y="112" width="130" height="10" fill="url(#hpgB)"/>
+<path class="hpg-glyph" fill-rule="evenodd" d="M15 48L27 48L27 49L28 49L28 74L52 74L52 48L89 48L89 49L90 49L90 50L89 50L89 51L88 51L88 52L87 52L87 54L86 54L86 57L85 57L85 59L65 59L65 74L86 74L86 73L87 73L87 59L88 59L88 56L89 56L89 54L90 54L90 52L91 52L91 51L93 51L93 50L95 50L95 49L99 49L99 48L127 48L127 49L132 49L132 50L134 50L134 51L135 51L135 52L136 52L136 53L137 53L137 54L138 54L138 57L139 57L139 67L127 67L127 66L126 66L126 61L125 61L125 60L122 60L122 59L105 59L105 60L102 60L102 61L101 61L101 62L100 62L100 77L99 77L99 80L98 80L98 81L97 81L97 82L96 82L96 83L93 83L93 84L65 84L65 100L64 100L64 101L52 101L52 84L28 84L28 100L27 100L27 101L15 101L15 48ZM114 71L139 71L139 92L138 92L138 95L137 95L137 96L136 96L136 97L135 97L135 98L134 98L134 99L132 99L132 100L128 100L128 101L99 101L99 100L95 100L95 99L93 99L93 98L91 98L91 97L90 97L90 95L89 95L89 93L88 93L88 90L87 90L87 87L90 87L90 86L95 86L95 85L97 85L97 84L98 84L98 83L99 83L99 82L100 82L100 87L101 87L101 89L103 89L103 90L124 90L124 89L126 89L126 87L127 87L127 81L114 81L114 71Z"/>
+</svg>

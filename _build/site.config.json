@@ -1,0 +1,12 @@
+{
+  "_readme": [
+    "Site-wide facts used by more than one generator. Change them here, once.",
+    "contactEmail    Public address. Appears on every state page CTA and both legal pages.",
+    "governingState  State whose law governs the Terms. Should be the state of",
+    "                incorporation, not whichever state page was built first.",
+    "legalUpdated    Date shown on /privacy and /terms. Bump when the text changes."
+  ],
+  "contactEmail": "info@heatpumpguides.com",
+  "governingState": "Massachusetts",
+  "legalUpdated": "September 8, 2026"
+}

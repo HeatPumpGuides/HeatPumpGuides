@@ -1,0 +1,522 @@
+{
+ "_method": [
+  "Share of homes whose MAIN space heating equipment is a heat pump, by state.",
+  "Computed from EIA RECS 2020 public-use microdata - NOT the published state",
+  "highlights table, which counts CENTRAL heat pumps only and omits mini-splits.",
+  "",
+  "  primary          EQUIPM in {4 central heat pump, 13 ductless mini-split},",
+  "                   weighted by NWEIGHT, denominator = all occupied homes.",
+  "  any              adds homes running a mini-split as SECONDARY heat (EQUIPAUXTYPE 13).",
+  "  gap              any - primary. Homes with a mini-split beside another main system.",
+  "  companionFuels   main heating fuel of those gap homes, most common first.",
+  "                   Second fuel listed only when it is at least 30% of that group.",
+  "  rse              relative standard error, 60 replicate weights (Fay, rho=0.5).",
+  "                   Above 25 is too noisy to publish; only HI and AK exceed it.",
+  "",
+  "Validation: reproduces EIA's published national figure of 14%.",
+  "Source: https://www.eia.gov/consumption/residential/data/2020/index.php?view=microdata"
+ ],
+ "Alabama": {
+  "abbr": "AL",
+  "primary": 39.2,
+  "any": 39.2,
+  "gap": 0.0,
+  "rse": 2.1,
+  "companionFuels": []
+ },
+ "Alaska": {
+  "abbr": "AK",
+  "primary": 0.2,
+  "any": 0.5,
+  "gap": 0.3,
+  "rse": 26.6,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Arizona": {
+  "abbr": "AZ",
+  "primary": 26.4,
+  "any": 26.7,
+  "gap": 0.3,
+  "rse": 2.3,
+  "companionFuels": [
+   "electric resistance",
+   "natural gas"
+  ]
+ },
+ "Arkansas": {
+  "abbr": "AR",
+  "primary": 19.7,
+  "any": 19.7,
+  "gap": 0.0,
+  "rse": 3.7,
+  "companionFuels": []
+ },
+ "California": {
+  "abbr": "CA",
+  "primary": 4.2,
+  "any": 4.6,
+  "gap": 0.4,
+  "rse": 4.4,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Colorado": {
+  "abbr": "CO",
+  "primary": 1.3,
+  "any": 1.5,
+  "gap": 0.2,
+  "rse": 13.3,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Connecticut": {
+  "abbr": "CT",
+  "primary": 1.7,
+  "any": 3.7,
+  "gap": 2.0,
+  "rse": 11.1,
+  "companionFuels": [
+   "oil",
+   "natural gas"
+  ]
+ },
+ "Delaware": {
+  "abbr": "DE",
+  "primary": 21.6,
+  "any": 24.1,
+  "gap": 2.5,
+  "rse": 4.4,
+  "companionFuels": [
+   "electric resistance"
+  ]
+ },
+ "District of Columbia": {
+  "abbr": "DC",
+  "primary": 15.0,
+  "any": 16.4,
+  "gap": 1.4,
+  "rse": 4.1,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Florida": {
+  "abbr": "FL",
+  "primary": 32.4,
+  "any": 32.4,
+  "gap": 0.0,
+  "rse": 1.5,
+  "companionFuels": []
+ },
+ "Georgia": {
+  "abbr": "GA",
+  "primary": 27.3,
+  "any": 28.3,
+  "gap": 1.0,
+  "rse": 2.3,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Hawaii": {
+  "abbr": "HI",
+  "primary": 0.2,
+  "any": 0.2,
+  "gap": 0.0,
+  "rse": 26.5,
+  "companionFuels": []
+ },
+ "Idaho": {
+  "abbr": "ID",
+  "primary": 2.8,
+  "any": 2.8,
+  "gap": 0.0,
+  "rse": 8.5,
+  "companionFuels": []
+ },
+ "Illinois": {
+  "abbr": "IL",
+  "primary": 2.4,
+  "any": 2.6,
+  "gap": 0.2,
+  "rse": 7.1,
+  "companionFuels": [
+   "electric resistance"
+  ]
+ },
+ "Indiana": {
+  "abbr": "IN",
+  "primary": 6.8,
+  "any": 7.2,
+  "gap": 0.4,
+  "rse": 5.3,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Iowa": {
+  "abbr": "IA",
+  "primary": 4.6,
+  "any": 5.3,
+  "gap": 0.7,
+  "rse": 7.3,
+  "companionFuels": [
+   "natural gas",
+   "propane"
+  ]
+ },
+ "Kansas": {
+  "abbr": "KS",
+  "primary": 6.0,
+  "any": 6.0,
+  "gap": 0.0,
+  "rse": 7.4,
+  "companionFuels": []
+ },
+ "Kentucky": {
+  "abbr": "KY",
+  "primary": 22.9,
+  "any": 24.4,
+  "gap": 1.5,
+  "rse": 2.1,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Louisiana": {
+  "abbr": "LA",
+  "primary": 21.1,
+  "any": 21.5,
+  "gap": 0.4,
+  "rse": 2.5,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Maine": {
+  "abbr": "ME",
+  "primary": 4.4,
+  "any": 12.2,
+  "gap": 7.8,
+  "rse": 9.5,
+  "companionFuels": [
+   "oil"
+  ]
+ },
+ "Maryland": {
+  "abbr": "MD",
+  "primary": 19.7,
+  "any": 20.7,
+  "gap": 1.0,
+  "rse": 2.9,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Massachusetts": {
+  "abbr": "MA",
+  "primary": 3.7,
+  "any": 6.0,
+  "gap": 2.3,
+  "rse": 6.0,
+  "companionFuels": [
+   "natural gas",
+   "oil"
+  ]
+ },
+ "Michigan": {
+  "abbr": "MI",
+  "primary": 1.9,
+  "any": 2.2,
+  "gap": 0.4,
+  "rse": 10.4,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Minnesota": {
+  "abbr": "MN",
+  "primary": 2.0,
+  "any": 2.4,
+  "gap": 0.5,
+  "rse": 10.9,
+  "companionFuels": [
+   "propane",
+   "natural gas"
+  ]
+ },
+ "Mississippi": {
+  "abbr": "MS",
+  "primary": 29.6,
+  "any": 29.6,
+  "gap": 0.0,
+  "rse": 2.8,
+  "companionFuels": []
+ },
+ "Missouri": {
+  "abbr": "MO",
+  "primary": 10.5,
+  "any": 10.8,
+  "gap": 0.3,
+  "rse": 4.3,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Montana": {
+  "abbr": "MT",
+  "primary": 2.5,
+  "any": 3.1,
+  "gap": 0.5,
+  "rse": 13.1,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Nebraska": {
+  "abbr": "NE",
+  "primary": 6.4,
+  "any": 8.3,
+  "gap": 1.9,
+  "rse": 7.3,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Nevada": {
+  "abbr": "NV",
+  "primary": 7.6,
+  "any": 7.6,
+  "gap": 0.0,
+  "rse": 7.1,
+  "companionFuels": []
+ },
+ "New Hampshire": {
+  "abbr": "NH",
+  "primary": 2.4,
+  "any": 6.7,
+  "gap": 4.3,
+  "rse": 11.8,
+  "companionFuels": [
+   "oil"
+  ]
+ },
+ "New Jersey": {
+  "abbr": "NJ",
+  "primary": 2.9,
+  "any": 3.4,
+  "gap": 0.5,
+  "rse": 9.2,
+  "companionFuels": [
+   "natural gas",
+   "oil"
+  ]
+ },
+ "New Mexico": {
+  "abbr": "NM",
+  "primary": 4.8,
+  "any": 5.2,
+  "gap": 0.4,
+  "rse": 9.9,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "New York": {
+  "abbr": "NY",
+  "primary": 4.2,
+  "any": 5.7,
+  "gap": 1.5,
+  "rse": 3.8,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "North Carolina": {
+  "abbr": "NC",
+  "primary": 38.7,
+  "any": 38.8,
+  "gap": 0.2,
+  "rse": 1.5,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "North Dakota": {
+  "abbr": "ND",
+  "primary": 1.5,
+  "any": 2.2,
+  "gap": 0.7,
+  "rse": 14.0,
+  "companionFuels": [
+   "electric resistance",
+   "natural gas"
+  ]
+ },
+ "Ohio": {
+  "abbr": "OH",
+  "primary": 5.7,
+  "any": 5.7,
+  "gap": 0.0,
+  "rse": 5.7,
+  "companionFuels": []
+ },
+ "Oklahoma": {
+  "abbr": "OK",
+  "primary": 12.2,
+  "any": 12.2,
+  "gap": 0.0,
+  "rse": 4.8,
+  "companionFuels": []
+ },
+ "Oregon": {
+  "abbr": "OR",
+  "primary": 14.6,
+  "any": 15.9,
+  "gap": 1.3,
+  "rse": 3.3,
+  "companionFuels": [
+   "natural gas",
+   "wood"
+  ]
+ },
+ "Pennsylvania": {
+  "abbr": "PA",
+  "primary": 8.4,
+  "any": 10.2,
+  "gap": 1.8,
+  "rse": 3.4,
+  "companionFuels": [
+   "natural gas",
+   "propane"
+  ]
+ },
+ "Rhode Island": {
+  "abbr": "RI",
+  "primary": 2.8,
+  "any": 5.7,
+  "gap": 2.8,
+  "rse": 11.5,
+  "companionFuels": [
+   "natural gas",
+   "oil"
+  ]
+ },
+ "South Carolina": {
+  "abbr": "SC",
+  "primary": 41.7,
+  "any": 42.3,
+  "gap": 0.6,
+  "rse": 1.7,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "South Dakota": {
+  "abbr": "SD",
+  "primary": 4.8,
+  "any": 5.3,
+  "gap": 0.5,
+  "rse": 7.9,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Tennessee": {
+  "abbr": "TN",
+  "primary": 35.5,
+  "any": 35.8,
+  "gap": 0.2,
+  "rse": 1.4,
+  "companionFuels": [
+   "electric resistance",
+   "natural gas"
+  ]
+ },
+ "Texas": {
+  "abbr": "TX",
+  "primary": 19.8,
+  "any": 19.9,
+  "gap": 0.1,
+  "rse": 1.8,
+  "companionFuels": [
+   "electric resistance"
+  ]
+ },
+ "Utah": {
+  "abbr": "UT",
+  "primary": 1.9,
+  "any": 2.9,
+  "gap": 1.0,
+  "rse": 13.3,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Vermont": {
+  "abbr": "VT",
+  "primary": 1.8,
+  "any": 5.4,
+  "gap": 3.6,
+  "rse": 11.8,
+  "companionFuels": [
+   "propane",
+   "oil"
+  ]
+ },
+ "Virginia": {
+  "abbr": "VA",
+  "primary": 28.7,
+  "any": 29.5,
+  "gap": 0.7,
+  "rse": 2.0,
+  "companionFuels": [
+   "natural gas"
+  ]
+ },
+ "Washington": {
+  "abbr": "WA",
+  "primary": 13.1,
+  "any": 14.2,
+  "gap": 1.0,
+  "rse": 3.2,
+  "companionFuels": [
+   "natural gas",
+   "wood"
+  ]
+ },
+ "West Virginia": {
+  "abbr": "WV",
+  "primary": 20.2,
+  "any": 20.7,
+  "gap": 0.5,
+  "rse": 4.0,
+  "companionFuels": [
+   "wood"
+  ]
+ },
+ "Wisconsin": {
+  "abbr": "WI",
+  "primary": 1.3,
+  "any": 1.6,
+  "gap": 0.3,
+  "rse": 12.7,
+  "companionFuels": [
+   "propane"
+  ]
+ },
+ "Wyoming": {
+  "abbr": "WY",
+  "primary": 1.0,
+  "any": 1.4,
+  "gap": 0.5,
+  "rse": 18.3,
+  "companionFuels": [
+   "electric resistance"
+  ]
+ }
+}
