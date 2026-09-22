@@ -232,14 +232,14 @@ body {
 
 /* --- heating: house gets heat, outdoor coil sheds cold --- */
 .rig.is-heat .pipe-in   { stroke: var(--red); }
-.rig.is-heat .pipe-out  { stroke: var(--blue); animation-direction: reverse; }
+.rig.is-heat .pipe-out  { stroke: var(--blue); }
 .rig.is-heat .puff-in   { stroke: var(--red-lit); }
 .rig.is-heat .puff-out  { stroke: var(--blue-lit); }
 .rig.is-heat .haze-in   { fill: var(--red); }
 .rig.is-heat .haze-out  { fill: var(--blue); }
 /* --- cooling: the reversing valve swaps every role --- */
 .rig.is-cool .pipe-in   { stroke: var(--blue); }
-.rig.is-cool .pipe-out  { stroke: var(--red); animation-direction: reverse; }
+.rig.is-cool .pipe-out  { stroke: var(--red); }
 .rig.is-cool .puff-in   { stroke: var(--blue-lit); }
 .rig.is-cool .puff-out  { stroke: var(--red-lit); }
 .rig.is-cool .haze-in   { fill: var(--blue); }
