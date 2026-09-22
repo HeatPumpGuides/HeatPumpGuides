@@ -633,3 +633,33 @@ a.adopt-src:hover { color: var(--blue-lit); }
 .legal-list li::marker { color: var(--faint); }
 .legal a { color: var(--frost); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--hair-lit); }
 .legal a:hover { text-decoration-color: var(--red); }
+
+/* =========================================================================
+   Apply page (/apply)
+   Listener contact form. The form itself is a Go High Level embed (iframe),
+   so only its frame is styled here; its fields are styled inside GHL.
+   ========================================================================= */
+.apply-lede { margin-top: 1rem; }
+
+.apply-grid { display: grid; gap: 1.25rem; max-width: 760px; }
+
+.apply-note { color: var(--faint); font-size: .8125rem; line-height: 1.6; }
+.apply-note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.apply-note a:hover { color: var(--frost); }
+
+.apply-form {
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--hair-lit); border-radius: 14px;
+  background: linear-gradient(120deg, rgba(239,29,38,.07), rgba(18,105,158,.07)), var(--ink-2);
+  min-width: 0;
+}
+.apply-form iframe { display: block; width: 100% !important; border: 0 !important; border-radius: 8px; }
+
+.apply-empty {
+  display: grid; gap: .6rem; place-content: center; text-align: center;
+  min-height: 420px; padding: 2rem;
+  border: 1px dashed var(--hair-lit); border-radius: 10px;
+  color: var(--muted); font-size: .9375rem;
+}
+.apply-empty p:last-child { max-width: 40ch; margin-inline: auto; }
+.apply-empty code { font-family: var(--mono); font-size: .8125rem; color: var(--frost); }
