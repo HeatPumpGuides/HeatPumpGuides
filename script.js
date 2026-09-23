@@ -8,6 +8,7 @@
   'use strict';
 
   var FEED = 'https://anchor.fm/s/f8c1cc3c/podcast/rss';
+  var SPOTIFY_SHOW = 'https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ';
   var SHOW_IN_LIST = 5; // below the featured latest episode
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -128,7 +129,7 @@
           (ep.desc ? '<p class="ep-desc">' + esc(ep.desc) + '</p>' : '') +
           '<div class="ep-actions">' +
             '<button class="ep-play" type="button" data-play="' + i + '">' + icons.play + '<span data-label>Play episode</span></button>' +
-            (ep.link ? '<a class="ep-out" href="' + esc(ep.link) + '" target="_blank" rel="noopener">Open in Spotify →</a>' : '') +
+            '<a class="ep-out" href="' + SPOTIFY_SHOW + '" target="_blank" rel="noopener">Open in Spotify →</a>' +
           '</div>' +
           '<div data-slot></div>' +
         '</div>' +
