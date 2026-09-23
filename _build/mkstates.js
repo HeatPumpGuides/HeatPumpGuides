@@ -6,6 +6,9 @@ const here = __dirname;
 const OUT = path.join(here, '..');
 const read = (f) => fs.readFileSync(path.join(here, f), 'utf8');
 
+// Google tag, shared by every generator so the pages cannot drift apart.
+const analytics = read('analytics.html').trim();
+
 const tpl = read('state.template.html');
 const data = JSON.parse(read('states.data.json'));
 const shapes = JSON.parse(read('states.out.json'));
@@ -173,6 +176,7 @@ for (const [slug, s] of Object.entries(data)) {
   const metaDesc = `Heat pump episodes, climate figures and rebate programs for ${s.name}. ${refCity} winters average ${janLow}°F lows.`;
 
   const html = tpl
+    .replace(/\{\{ANALYTICS\}\}/g, analytics)
     .replace(/\{\{LOGO_GLYPHS\}\}/g, logoGlyphs)
     .replace(/\{\{SOCIALS\}\}/g, socials)
     .replace(/\{\{SHAPE_VIEWBOX\}\}/g, vb)

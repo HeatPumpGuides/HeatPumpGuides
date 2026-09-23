@@ -30,9 +30,34 @@ That rewrites `../index.html` and patches the warming-stripes gradient into
 | `mkmap.js` | Decodes `p.json` (us-atlas TopoJSON, pre-projected Albers USA) into simplified state paths → `states.out.json` | only to change map detail |
 | `mkmapsvg.js` | Turns `states.out.json` into the map SVG → `map.fragment.html` | to change labels/callouts |
 | `mkstripes.js` | Turns `gistemp.csv` into the stripes CSS gradient → `stripes.css.txt` | to refresh temperature data |
+| `mkstates.js` | Builds all 51 state pages from `states.data.json` + the shared datasets | **every state edit** |
+| `mkclimate.js` | Fetches NOAA 1991-2020 normals → `climate-normals.json` | rarely; normals reissue once a decade |
 | `mklegal.js` | Builds `../privacy/` and `../terms/` from `legal/*.html` | editing the legal pages |
+| `mkapply.js` | Builds `../apply/` from `apply.template.html` + the GHL form embed in `apply.embed.html` | changing the form or the page copy |
 
-Order if you regenerate everything: `mkmap.js` → `mkmapsvg.js` → `mkstripes.js` → `build.js` → `mkstates.js` → `mklegal.js`.
+Day to day you only ever need two:
+
+```
+node _build/mkstates.js     # after editing states.data.json or state.template.html
+node _build/build.js       # after editing index.template.html
+```
+
+Full regeneration order, only if rebuilding from scratch:
+`mkmap.js` → `mkmapsvg.js` → `mkclimate.js` → `mkstripes.js` → `build.js` → `mkstates.js` → `mklegal.js` → `mkapply.js`.
+
+## Google Analytics
+
+The Google tag (property `G-Y7Q45XVCNG`) lives in `analytics.html` and nowhere else.
+All four page generators read that file and drop it in immediately after `<head>`,
+so every one of the 55 pages carries exactly one copy and they cannot drift apart.
+
+To change the property ID, edit `analytics.html` and rebuild all four:
+
+```
+node _build/build.js && node _build/mkstates.js && node _build/mklegal.js && node _build/mkapply.js
+```
+
+Never paste a second tag into a page — Google counts the pageview twice.
 
 ## Legal pages
 

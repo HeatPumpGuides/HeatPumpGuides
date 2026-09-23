@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
+
+/* Fonts: the site's Manrope everywhere, with system fallbacks. GHL's own CSS
+   sets 'Inter' with no fallback, so if Google Fonts is blocked the fields
+   drop to Times. The fallback list prevents that. */
+#_builder-form#_builder-form, #_builder-form#_builder-form input, #_builder-form#_builder-form textarea,
+#_builder-form#_builder-form .multiselect, #_builder-form#_builder-form .multiselect__single,
+#_builder-form#_builder-form .multiselect__placeholder, #_builder-form#_builder-form .multiselect__input,
+#_builder-form#_builder-form .multiselect__option,
+#_builder-form#_builder-form input::placeholder, #_builder-form#_builder-form textarea::placeholder {
+  font-family: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+}
+
+/* Heat Pump Guides — dark theme for the GHL "Apply" form.
+   Paste this into GHL: Sites → Forms → Heat Pump Guides Apply Form → Styles
+   (right-hand panel) → Custom CSS, replacing what is there, then Save. The
+   website cannot style the inside of the form itself; GHL loads it in its own
+   frame. The doubled #_builder-form#_builder-form is deliberate: with the
+   @import present GHL loads this before its own CSS, so these rules must
+   out-rank GHL's on specificity rather than rely on coming last. */
+
+/* Let the website's dark panel show through */
+html, body, #_builder-form#_builder-form, #_builder-form#_builder-form.form-builder--wrap {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Labels */
+#_builder-form#_builder-form label, #_builder-form#_builder-form .field-label {
+  color: #E8EDF4 !important;
+  font-family: 'Manrope', 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Text inputs, email, phone, message, dropdowns */
+#_builder-form#_builder-form .form-builder--item input[type=text][class=form-control],
+#_builder-form#_builder-form .form-builder--item input.form-control,
+#_builder-form#_builder-form input[type=tel],
+#_builder-form#_builder-form input[type=email],
+#_builder-form#_builder-form textarea,
+#_builder-form#_builder-form .multiselect .multiselect__tags,
+#_builder-form#_builder-form .form-builder--item .multiselect,
+#_builder-form#_builder-form .form-builder--item .multiselect .multiselect__input,
+#_builder-form#_builder-form .form-builder--item .multiselect .multiselect__placeholder,
+#_builder-form#_builder-form .multiselect__single {
+  background-color: #161D28 !important;
+  color: #E8EDF4 !important;
+  box-shadow: none !important;
+}
+#_builder-form#_builder-form .form-builder--item input[type=text][class=form-control],
+#_builder-form#_builder-form .form-builder--item input.form-control,
+#_builder-form#_builder-form input[type=tel],
+#_builder-form#_builder-form input[type=email],
+#_builder-form#_builder-form textarea,
+#_builder-form#_builder-form .multiselect .multiselect__tags {
+  border: 1px solid rgba(232, 237, 244, 0.22) !important;
+}
+#_builder-form#_builder-form input:focus,
+#_builder-form#_builder-form textarea:focus,
+#_builder-form#_builder-form .multiselect--active .multiselect__tags {
+  border-color: #43A6DC !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(67, 166, 220, 0.18) !important;
+}
+#_builder-form#_builder-form input::placeholder,
+#_builder-form#_builder-form textarea::placeholder,
+#_builder-form#_builder-form .multiselect__placeholder,
+#_builder-form#_builder-form .form-builder--item .multiselect .multiselect__placeholder {
+  color: #5D6B7D !important;
+}
+
+/* Dropdown list (Country / State) */
+#_builder-form#_builder-form .multiselect__content-wrapper {
+  background: #10151E !important;
+  border-color: rgba(232, 237, 244, 0.22) !important;
+}
+#_builder-form#_builder-form .multiselect__option { color: #E8EDF4 !important; }
+#_builder-form#_builder-form .multiselect__option--highlight { background: #12699E !important; color: #fff !important; }
+
+/* Phone country picker */
+#_builder-form#_builder-form .iti__selected-flag, #_builder-form#_builder-form .iti__selected-dial-code { color: #E8EDF4 !important; }
+#_builder-form#_builder-form .iti__country-list { background: #10151E !important; color: #E8EDF4 !important; }
+
+/* Icons inside fields (e.g. the envelope on Email) */
+#_builder-form#_builder-form .form-builder--item svg { color: #8C9AAE !important; stroke: currentColor; }
+
+/* Small print, consent text, error messages */
+#_builder-form#_builder-form p, #_builder-form#_builder-form .text-element, #_builder-form#_builder-form span { color: #8C9AAE; }
+#_builder-form#_builder-form a { color: #E8EDF4 !important; }
+#_builder-form#_builder-form .error, #_builder-form#_builder-form .text-danger { color: #FF5348 !important; }
+
+/* Submit button: same light pill as the site's primary buttons */
+#_builder-form#_builder-form .btn.button-element,
+#_builder-form#_builder-form button[type=submit] {
+  background: #E8EDF4 !important;
+  color: #0B0E13 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  font-family: 'Manrope', 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+#_builder-form#_builder-form .btn.button-element *,
+#_builder-form#_builder-form button[type=submit] * {
+  color: #0B0E13 !important;
+  font-family: 'Manrope', 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif !important;
+  font-weight: 700 !important;
+}
+#_builder-form#_builder-form .btn.button-element:hover,
+#_builder-form#_builder-form button[type=submit]:hover { background: #FFFFFF !important; }

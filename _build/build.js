@@ -6,6 +6,9 @@ const OUT = path.join(__dirname, '..');
 const here = __dirname;
 const read = (f) => fs.readFileSync(path.join(here, f), 'utf8');
 
+// Google tag, shared by every generator so the pages cannot drift apart.
+const analytics = read('analytics.html').trim();
+
 const tpl = read('index.template.html');
 const map = read('map.fragment.html');
 const glyphs = JSON.parse(read('logo.paths.json'));
@@ -64,6 +67,7 @@ const stateList = states.map((s) => {
 
 // --- write ----------------------------------------------------------------
 const html = tpl
+  .replace('{{ANALYTICS}}', analytics)
   .replace('{{LOGO_GLYPHS}}', logoGlyphs)
   .replace('{{US_MAP}}', map)
   .replace('{{STATE_LIST}}', stateList)
@@ -71,7 +75,7 @@ const html = tpl
   .replace('{{EPS_NOSCRIPT}}', noscript)
   .replace('{{EPS_JSON}}', epsJson);
 
-for (const token of ['{{LOGO_GLYPHS}}', '{{US_MAP}}', '{{STATE_LIST}}', '{{SOCIALS}}', '{{EPS_NOSCRIPT}}', '{{EPS_JSON}}']) {
+for (const token of ['{{ANALYTICS}}', '{{LOGO_GLYPHS}}', '{{US_MAP}}', '{{STATE_LIST}}', '{{SOCIALS}}', '{{EPS_NOSCRIPT}}', '{{EPS_JSON}}']) {
   if (html.includes(token)) throw new Error('unreplaced token: ' + token);
 }
 

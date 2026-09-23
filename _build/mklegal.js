@@ -6,6 +6,9 @@ const here = __dirname;
 const OUT = path.join(here, '..');
 const read = (f) => fs.readFileSync(path.join(here, f), 'utf8');
 
+// Google tag, shared by every generator so the pages cannot drift apart.
+const analytics = read('analytics.html').trim();
+
 // Shared with mkstates.js via site.config.json so the address cannot drift
 // between the state CTAs and the legal pages.
 const cfg = JSON.parse(read('site.config.json'));
@@ -54,6 +57,7 @@ for (const p of PAGES) {
     .join('\n        ');
 
   const html = tpl
+    .replace(/\{\{ANALYTICS\}\}/g, analytics)
     .replace(/\{\{LOGO_GLYPHS\}\}/g, logoGlyphs)
     .replace(/\{\{SOCIALS\}\}/g, socials)
     .replace(/\{\{TOC\}\}/g, toc)
