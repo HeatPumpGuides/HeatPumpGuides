@@ -1,7 +1,11 @@
 /* Heat Pump Guides — state page
-   Pulls the live feed and shows only the episodes tagged to this state in
-   states.data.json. With none tagged yet, it renders placeholder slots so the
-   page still reads as finished.
+   Pulls the live feed and shows the episodes that belong to this state:
+     1. automatically, when the state's name appears in an episode's title or
+        description (whole words only, URLs ignored), and
+     2. manually, via match strings in states.data.json -> episodes.
+   An episode can be kept off a page with states.data.json -> excludeEpisodes.
+   With nothing matched it renders placeholder slots so the page still reads
+   as finished.
 */
 (function () {
   'use strict';
@@ -14,8 +18,34 @@
   if (yr) yr.textContent = String(new Date().getFullYear());
   if (!host) return;
 
-  var match = [];
-  try { match = JSON.parse(host.getAttribute('data-match') || '[]'); } catch (e) { match = []; }
+  function list(attr) {
+    try { return JSON.parse(host.getAttribute(attr) || '[]'); } catch (e) { return []; }
+  }
+  var match = list('data-match');
+  var exclude = list('data-exclude');
+  var warm = document.querySelector('h1 .warm');
+  var stateName = host.getAttribute('data-state') || (warm ? warm.textContent.trim() : '');
+
+  // Names an episode might use for this state. Each entry is [pattern, not-preceded-by].
+  // The guard stops "Virginia" matching "West Virginia" and "Washington" matching
+  // "Washington, D.C."; whole-word matching already keeps "Kansas" out of "Arkansas".
+  function aliases(name) {
+    if (name === 'District of Columbia') return [['District of Columbia'], ['Washington,? D\\.? ?C\\.?'], ['D\\.C\\.']];
+    if (name === 'Virginia') return [['Virginia', 'West\\s+']];
+    if (name === 'Washington') return [['Washington(?!,?\\s*D\\.?\\s?C\\b)']];
+    return [[name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')]];
+  }
+  var nameRes = stateName ? aliases(stateName).map(function (a) {
+    return new RegExp((a[1] ? '(?<!' + a[1] + ')' : '') + '\\b' + a[0] + '(?!\\w)', 'i');
+  }) : [];
+  function mentionsState(text) {
+    return nameRes.some(function (re) { return re.test(text); });
+  }
+  // Descriptions arrive as HTML full of reference links; only the prose counts.
+  function prose(html) {
+    var d = new DOMParser().parseFromString(html || '', 'text/html');
+    return (d.body.textContent || '').replace(/\b(?:https?:\/\/|www\.)\S+|\S+\.(?:com|org|gov|net|edu|us)\S*/gi, ' ');
+  }
 
   function esc(s) {
     return String(s == null ? '' : s)
@@ -67,9 +97,6 @@
     }).join('') + '</ul>';
   }
 
-  // Nothing tagged: don't even hit the network.
-  if (!match.length) { host.innerHTML = slots(PLACEHOLDERS); return; }
-
   host.innerHTML = '<p class="ep-hint">Loading episodes…</p>';
 
   fetch(FEED, { cache: 'no-cache' })
@@ -85,14 +112,20 @@
           date: tag(it, 'pubDate'),
           dur: tag(it, 'itunes:duration'),
           link: tag(it, 'link'),
-          guid: tag(it, 'guid')
+          guid: tag(it, 'guid'),
+          desc: prose(tag(it, 'description'))
         };
       });
 
-      var needles = match.map(function (m) { return String(m).toLowerCase(); });
-      var hits = all.filter(function (ep) {
+      var lower = function (a) { return a.map(function (m) { return String(m).toLowerCase(); }); };
+      var needles = lower(match), blocked = lower(exclude);
+      var has = function (list, ep) {
         var hay = (ep.guid + ' ' + ep.title).toLowerCase();
-        return needles.some(function (n) { return hay.indexOf(n) !== -1; });
+        return list.some(function (n) { return n && hay.indexOf(n) !== -1; });
+      };
+      var hits = all.filter(function (ep) {
+        if (has(blocked, ep)) return false;
+        return has(needles, ep) || mentionsState(ep.title) || mentionsState(ep.desc);
       });
 
       host.innerHTML = hits.length ? cards(hits) : slots(PLACEHOLDERS);
