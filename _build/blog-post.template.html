@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{ANALYTICS}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{SEO_TITLE}}</title>
+<meta name="description" content="{{META_DESC}}">
+<meta name="author" content="{{AUTHOR}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E13">
+<meta property="og:site_name" content="Heat Pump Guides">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{HEADLINE}}">
+<meta property="og:description" content="{{META_DESC}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:audio" content="{{AUDIO}}">
+<meta property="article:published_time" content="{{PUBLISHED}}">
+<meta property="article:modified_time" content="{{MODIFIED}}">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="application/rss+xml" title="Heat Pump Guides podcast" href="https://anchor.fm/s/f8c1cc3c/podcast/rss">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Manrope-ExtraBold.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Manrope-Regular.woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+{{JSON_LD}}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#article">Skip to article</a>
+
+<!-- logo, defined once and referenced in the header and footer -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <linearGradient id="hpgTop" x1="0" y1="0" x2="662.881" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+    </linearGradient>
+    <linearGradient id="hpgBot" x1="662.881" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+    </linearGradient>
+  </defs>
+  <symbol id="hpg" viewBox="0 0 663 80">{{LOGO_GLYPHS}}
+    <path d="M662.881 7.67119H0V0H662.881V7.67119Z" fill="url(#hpgTop)"/>
+    <path d="M0 80H662.881V72.3288H0V80Z" fill="url(#hpgBot)"/>
+  </symbol>
+</svg>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" aria-label="Heat Pump Guides — home">
+      <svg class="logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
+    </a>
+    <nav class="hdr-nav">
+      <a class="hdr-link hdr-link--keep" href="/blog/" aria-current="page">Blog</a>
+      <a class="hdr-link" href="/#episodes">Episodes</a>
+      <a class="hdr-link" href="/#states">States</a>
+      <a class="hdr-cta" href="https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ" target="_blank" rel="noopener">Listen</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ headline + player ============ -->
+  <section class="post-head">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/blog/">Blog</a><span aria-hidden="true">/</span><span>Episode {{N}}</span>
+      </nav>
+      <h1>{{HEADLINE}}</h1>
+      <p class="post-dek">{{SUBHEADING}}</p>
+      <p class="post-by">
+        <span>By {{BYLINE}}</span> · <span>Aired <time datetime="{{AIRED_ISO}}">{{AIRED}}</time></span>{{UPDATED_NOTE}} · <span>{{READ_MIN}} min read</span>
+      </p>
+
+      <div class="player" id="listen" data-audio="{{AUDIO}}">
+        <img class="player-art" src="{{ART}}" alt="" width="132" height="132">
+        <div class="player-body">
+          <p class="eyebrow">Episode {{N}} · {{LISTEN_MIN}} min listen</p>
+          <p class="player-t">{{EP_TITLE}}</p>
+          <div class="player-row">
+            <button class="ep-play" type="button" data-toggle>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span data-label>Play episode</span>
+            </button>
+            <button class="player-rate" type="button" data-rate aria-label="Playback speed">1×</button>
+          </div>
+          <div class="scrub">
+            <span class="scrub-t" data-now>0:00</span>
+            <div class="scrub-bar" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="scrub-fill"></div></div>
+            <span class="scrub-t" data-dur>{{DURATION}}</span>
+          </div>
+        </div>
+        <div class="listen-on">
+          <p class="eyebrow">Or listen on</p>
+          <div class="listen-on-row">
+            {{LISTEN_ON}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ article ============ -->
+  <section class="sec post-sec">
+    <div class="wrap post-grid">
+      <nav class="legal-toc post-toc" aria-label="In this article">
+        <p class="eyebrow">In this article</p>
+        <ul>
+          {{TOC}}
+          <li><a href="#transcript">Full transcript</a></li>
+        </ul>
+      </nav>
+
+      <div class="post-main">
+        <article class="prose" id="article">
+{{ARTICLE}}
+        </article>
+
+        <details class="transcript" id="transcript">
+          <summary>
+            <span class="transcript-t">Read the full transcript</span>
+            <span class="transcript-s">Episode {{N}} · tap a timestamp to play from there</span>
+          </summary>
+          <div class="transcript-body">
+          {{TRANSCRIPT}}
+          </div>
+        </details>
+
+        <div class="cta">
+          <div>
+            <h2>Have a heat pump story?</h2>
+            <p>If you've had a heat pump installed — good, bad or somewhere in between — we'd like to hear about it, and maybe have you on the show.</p>
+          </div>
+          <a class="btn btn--solid" href="/apply/">Tell us about it</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{{RELATED}}
+</main>
+
+<!-- appears once the episode is playing and the main player has scrolled away -->
+<div class="mini" hidden>
+  <div class="wrap mini-in">
+    <button class="mini-btn" type="button" data-toggle aria-label="Pause episode">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+    </button>
+    <a class="mini-t" href="#listen">Episode {{N}} · {{EP_TITLE}}</a>
+    <span class="scrub-t mini-time" data-now>0:00</span>
+  </div>
+  <div class="mini-bar"><div class="scrub-fill"></div></div>
+</div>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <svg class="logo ft-logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
+        <p class="ft-tag">A podcast about the most efficient heating and cooling technology we have — and how to actually get one installed.</p>
+      </div>
+      <div class="ft-socials">{{SOCIALS}}</div>
+    </div>
+    <div class="ft-base">
+      <p>© <span id="yr">2026</span> Heat Pump Guides</p>
+      <nav class="ft-links">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="https://anchor.fm/s/f8c1cc3c/podcast/rss" target="_blank" rel="noopener">RSS</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="/blog.js" defer></script>
+</body>
+</html>

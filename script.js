@@ -110,6 +110,16 @@
       .replace(/"/g, '&quot;');
   }
 
+  // guid -> blog post URL. Baked at build time, refreshed from /blog/posts.json
+  // so a post published after the last homepage build still gets linked.
+  var posts = window.__POSTS__ || {};
+
+  // An episode title links to its post once one exists; until then it stays text.
+  function titleHtml(ep, text) {
+    var url = ep.guid && posts[ep.guid];
+    return url ? '<a href="' + esc(url) + '">' + esc(text) + '</a>' : esc(text);
+  }
+
   var icons = {
     play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
     pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>'
@@ -125,7 +135,7 @@
             '<span class="ep-badge">Latest' + (s.n ? ' · Episode ' + esc(s.n) : '') + '</span>' +
             '<span class="ep-meta">' + esc(humanDate(ep.date)) + (ep.dur ? ' · ' + esc(humanDur(ep.dur)) : '') + '</span>' +
           '</div>' +
-          '<h3>' + esc(s.t) + '</h3>' +
+          '<h3>' + titleHtml(ep, s.t) + '</h3>' +
           (ep.desc ? '<p class="ep-desc">' + esc(ep.desc) + '</p>' : '') +
           '<div class="ep-actions">' +
             '<button class="ep-play" type="button" data-play="' + i + '">' + icons.play + '<span data-label>Play episode</span></button>' +
@@ -145,7 +155,7 @@
       return '<li class="ep-row" data-ep="' + i + '">' +
         '<span class="ep-num">' + (s.n ? esc(s.n) : '') + '</span>' +
         '<div class="ep-main">' +
-          '<p class="ep-title">' + esc(s.t) + '</p>' +
+          '<p class="ep-title">' + titleHtml(ep, s.t) + '</p>' +
           '<p class="ep-sub">' + esc(when) + (dur ? ' · ' + esc(dur) : '') + '</p>' +
           '<div data-slot></div>' +
         '</div>' +
@@ -269,6 +279,7 @@
       var txt = raw.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
       return {
         title: tag(it, 'title'),
+        guid: tag(it, 'guid'),
         date: tag(it, 'pubDate'),
         dur: tag(it, 'itunes:duration'),
         link: tag(it, 'link'),
@@ -306,6 +317,15 @@
         elStatus.title = 'Could not reach the podcast feed just now.';
       }
     });
+
+  fetch('/blog/posts.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (list) {
+      var before = JSON.stringify(posts);
+      list.forEach(function (p) { posts[p.guid] = p.url; });
+      if (JSON.stringify(posts) !== before) render(episodes);
+    })
+    .catch(noop);
 
   /* -------------------------------------------------------------- state map */
   var map = $('.usmap');

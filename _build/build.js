@@ -25,15 +25,8 @@ const esc = (s) => String(s == null ? '' : s)
 const logoGlyphs = glyphs.map((d) => `\n    <path d="${d}" fill="currentColor"/>`).join('');
 
 // --- socials --------------------------------------------------------------
-const SOCIALS = [
-  ['Spotify', 'spotify', 'https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ'],
-  ['Apple Podcasts', 'applepodcasts', 'https://podcasts.apple.com/us/podcast/id1786858496'],
-  ['YouTube', 'youtube', 'https://youtube.com'],
-  ['Instagram', 'instagram', 'https://www.instagram.com/heatpumpguides/'],
-  ['Threads', 'threads', 'https://www.threads.com/@heatpumpguides/'],
-  ['Facebook', 'facebook', 'https://www.facebook.com/HeatPumpGuides/'],
-  ['LinkedIn', 'linkedin', 'https://www.linkedin.com/company/heat-pump-guides/'],
-];
+// Footer icons, shared with every generator via site.config.json.
+const SOCIALS = JSON.parse(read('site.config.json')).socials;
 
 const socials = SOCIALS.map(([name, key, href]) => {
   const d = icons[key];
@@ -41,6 +34,20 @@ const socials = SOCIALS.map(([name, key, href]) => {
   return `<a class="ft-soc" href="${href}" target="_blank" rel="noopener" aria-label="${name}">`
     + `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg></a>`;
 }).join('\n        ');
+
+// --- blog posts -----------------------------------------------------------
+// guid -> post URL, so episode titles can link to their write-up. The page
+// also fetches /blog/posts.json, which picks up posts added after this build.
+const BLOG = path.join(here, 'blog');
+const posts = {};
+if (fs.existsSync(BLOG)) {
+  for (const d of fs.readdirSync(BLOG, { withFileTypes: true })) {
+    const f = path.join(BLOG, d.name, 'post.json');
+    if (!d.isDirectory() || !fs.existsSync(f)) continue;
+    const p = JSON.parse(fs.readFileSync(f, 'utf8'));
+    posts[p.guid] = `/blog/${p.slug}/`;
+  }
+}
 
 // --- episodes -------------------------------------------------------------
 const stripNum = (t) => {
@@ -51,7 +58,7 @@ const noscript = eps.slice(0, 6).map((e) => {
   const d = new Date(e.date);
   const when = isNaN(d) ? '' : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   return `<li class="ep-row"><span class="ep-num"></span><div class="ep-main">`
-    + `<p class="ep-title"><a href="${esc(e.link)}">${esc(stripNum(e.title))}</a></p>`
+    + `<p class="ep-title"><a href="${esc(posts[e.guid] || e.link)}">${esc(stripNum(e.title))}</a></p>`
     + `<p class="ep-sub">${esc(when)}</p></div></li>`;
 }).join('\n          ');
 
@@ -73,9 +80,10 @@ const html = tpl
   .replace('{{STATE_LIST}}', stateList)
   .replace('{{SOCIALS}}', socials)
   .replace('{{EPS_NOSCRIPT}}', noscript)
-  .replace('{{EPS_JSON}}', epsJson);
+  .replace('{{EPS_JSON}}', epsJson)
+  .replace('{{POSTS_JSON}}', JSON.stringify(posts));
 
-for (const token of ['{{ANALYTICS}}', '{{LOGO_GLYPHS}}', '{{US_MAP}}', '{{STATE_LIST}}', '{{SOCIALS}}', '{{EPS_NOSCRIPT}}', '{{EPS_JSON}}']) {
+for (const token of ['{{ANALYTICS}}', '{{LOGO_GLYPHS}}', '{{US_MAP}}', '{{STATE_LIST}}', '{{SOCIALS}}', '{{EPS_NOSCRIPT}}', '{{EPS_JSON}}', '{{POSTS_JSON}}']) {
   if (html.includes(token)) throw new Error('unreplaced token: ' + token);
 }
 
@@ -89,4 +97,4 @@ fs.writeFileSync(cssPath, css);
 
 console.log('index.html  ', (html.length / 1024).toFixed(1) + ' KB');
 console.log('styles.css  ', (css.length / 1024).toFixed(1) + ' KB');
-console.log('episodes    ', eps.length, '| socials', SOCIALS.length, '| glyphs', glyphs.length);
+console.log('episodes    ', eps.length, '| posts', Object.keys(posts).length, '| socials', SOCIALS.length, '| glyphs', glyphs.length);

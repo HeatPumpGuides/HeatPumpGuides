@@ -80,18 +80,26 @@
     return out + '</ul>';
   }
 
+  // guid -> { url, spotify } for episodes that have a blog post; see /blog/posts.json
+  var posts = {};
+
+  // The title opens the written post when there is one; the play button goes to
+  // the episode itself. Without a post, both fall back to the feed's own link.
   function cards(list) {
     return '<ul class="ep-list ep-list--state">' + list.map(function (ep) {
       var s = splitNum(ep.title);
+      var post = posts[ep.guid];
+      var read = post ? '<a href="' + esc(post.url) + '">' : '<a href="' + esc(ep.link) + '" target="_blank" rel="noopener">';
+      var listen = (post && post.spotify) || ep.link;
       return '<li class="ep-row">'
         + '<span class="ep-num">' + (s.n ? esc(s.n) : '') + '</span>'
         + '<div class="ep-main">'
-        + '<p class="ep-title"><a href="' + esc(ep.link) + '" target="_blank" rel="noopener">' + esc(s.t) + '</a></p>'
+        + '<p class="ep-title">' + read + esc(s.t) + '</a></p>'
         + '<p class="ep-sub">' + esc(humanDate(ep.date)) + (ep.dur ? ' · ' + esc(humanDur(ep.dur)) : '') + '</p>'
         + '</div>'
         + '<span class="ep-when">' + esc(humanDate(ep.date)) + '</span>'
         + '<span class="ep-dur">' + esc(humanDur(ep.dur)) + '</span>'
-        + '<a class="ep-btn" href="' + esc(ep.link) + '" target="_blank" rel="noopener" aria-label="Listen to ' + esc(s.t) + '">'
+        + '<a class="ep-btn" href="' + esc(listen) + '" target="_blank" rel="noopener" aria-label="Listen to ' + esc(s.t) + '">'
         + '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></a>'
         + '</li>';
     }).join('') + '</ul>';
@@ -99,8 +107,15 @@
 
   host.innerHTML = '<p class="ep-hint">Loading episodes…</p>';
 
+  // Posts are optional: if the lookup fails, titles just link to the feed.
+  var postsReady = fetch('/blog/posts.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (list) { list.forEach(function (p) { posts[p.guid] = p; }); })
+    .catch(function () {});
+
   fetch(FEED, { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (text) { return postsReady.then(function () { return text; }); })
     .then(function (text) {
       var doc = new DOMParser().parseFromString(text, 'application/xml');
       if (doc.getElementsByTagName('parsererror').length) throw new Error('bad feed');

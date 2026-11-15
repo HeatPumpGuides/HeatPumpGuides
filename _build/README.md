@@ -34,6 +34,8 @@ That rewrites `../index.html` and patches the warming-stripes gradient into
 | `mkclimate.js` | Fetches NOAA 1991-2020 normals → `climate-normals.json` | rarely; normals reissue once a decade |
 | `mklegal.js` | Builds `../privacy/` and `../terms/` from `legal/*.html` | editing the legal pages |
 | `mkapply.js` | Builds `../apply/` from `apply.template.html` + the GHL form embed in `apply.embed.html` | changing the form or the page copy |
+| `mkepisodes.js` | Fetches the RSS feed → `feed.xml`, `episodes.fallback.json`, and looks up each episode's Spotify / Apple / YouTube URL → `episode-links.json` | a new episode is out |
+| `mkblog.js` | Builds `../blog/` (every post + the index + `posts.json`) from `blog/<slug>/`, plus `../sitemap.xml` and `../robots.txt`. `--check-links` also requests every external link | any post edit, and after adding a page anywhere on the site |
 
 Day to day you only ever need two:
 
@@ -43,18 +45,48 @@ node _build/build.js       # after editing index.template.html
 ```
 
 Full regeneration order, only if rebuilding from scratch:
-`mkmap.js` → `mkmapsvg.js` → `mkclimate.js` → `mkstripes.js` → `build.js` → `mkstates.js` → `mklegal.js` → `mkapply.js`.
+`mkmap.js` → `mkmapsvg.js` → `mkclimate.js` → `mkstripes.js` → `mkepisodes.js` → `build.js` → `mkstates.js` → `mklegal.js` → `mkapply.js` → `mkblog.js`.
+
+## Blog posts
+
+One folder per episode in `blog/`, named after the post's URL slug:
+
+| File | What it holds |
+|---|---|
+| `post.json` | `guid` (the episode's RSS guid — ties the post to its audio, date and platform links), `slug`, `headline` (the h1), `subheading`, `seoTitle` (the `<title>`, ≤ 60 chars), `description` (meta, ≤ 155 chars), `published`, optional `updated`, `related` (up to 3 other slugs) |
+| `article.html` | The article body. Starts at `<h2>` — the headline is the page's h1. Headings may not skip a level. |
+| `transcript.txt` | One paragraph per line, `[m:ss] text`. The timestamps become buttons that play from that point. |
+
+`mkblog.js` refuses to build a post that would ship broken, and names the problem:
+an `<h1>` in the body, a skipped heading level, an internal link to a page that
+doesn't exist (always link the trailing-slash form, `/maine/`), a link with
+tracking parameters (`utm_*`, `srsltid`, …), vague anchor text ("click here"), or a
+`related` slug with no post. External links get `target="_blank" rel="noopener"`
+added automatically.
+
+Styling hooks inside `article.html`:
+
+- `<p class="post-intro">` — the opening paragraph, set larger
+- `<div class="keybox">` — the "short answer" box
+- `<div class="table-wrap"><table>…` — data tables; `class="num"` right-aligns a column
+- `<aside class="ed-note"><p class="ed-note-h">Editor's note · Month YYYY</p><p>…</p></aside>` —
+  for anything the episode said that has since changed. Put it right after the claim.
+
+**Adding a post by hand:** `node _build/mkepisodes.js` (picks up the new episode and
+its platform links) → create `blog/<slug>/` → `node _build/mkblog.js --check-links`
+→ `node _build/build.js` (so the homepage's baked links include it; the live page
+also picks it up from `/blog/posts.json` without a rebuild).
 
 ## Google Analytics
 
 The Google tag (property `G-Y7Q45XVCNG`) lives in `analytics.html` and nowhere else.
-All four page generators read that file and drop it in immediately after `<head>`,
-so every one of the 55 pages carries exactly one copy and they cannot drift apart.
+All five page generators read that file and drop it in immediately after `<head>`,
+so every page carries exactly one copy and they cannot drift apart.
 
-To change the property ID, edit `analytics.html` and rebuild all four:
+To change the property ID, edit `analytics.html` and rebuild all five:
 
 ```
-node _build/build.js && node _build/mkstates.js && node _build/mklegal.js && node _build/mkapply.js
+node _build/build.js && node _build/mkstates.js && node _build/mklegal.js && node _build/mkapply.js && node _build/mkblog.js
 ```
 
 Never paste a second tag into a page — Google counts the pageview twice.
@@ -130,14 +162,14 @@ generated from that one file.
   Feed: `https://anchor.fm/s/f8c1cc3c/podcast/rss`
 - **Social icons** — simple-icons (CC0).
 
-To refresh the baked episodes:
+To refresh the baked episodes, and look up per-episode platform links:
 
 ```
-curl -sL https://anchor.fm/s/f8c1cc3c/podcast/rss -o _build/feed.xml
+node _build/mkepisodes.js
 ```
 
-then re-derive `episodes.fallback.json` (see the inline snippet in the session
-notes, or just leave it — the live fetch keeps the page current regardless).
+Links already in `episode-links.json` are never overwritten, so a hand fix sticks.
+Spotify and YouTube can take a few hours to list a new episode; re-run to fill gaps.
 
 ## Preview locally
 

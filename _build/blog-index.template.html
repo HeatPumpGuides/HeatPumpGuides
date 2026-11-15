@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{ANALYTICS}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heat Pump Blog — Every Heat Pump Guides Episode, Written Up</title>
+<meta name="description" content="Plain-English articles on heat pumps: how they work, costs, efficiency ratings, myths, rebates and state-by-state adoption. Each one is a Heat Pump Guides podcast episode you can read or play.">
+<link rel="canonical" href="https://heatpumpguides.com/blog/">
+<link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0B0E13">
+<meta property="og:site_name" content="Heat Pump Guides">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Heat Pump Guides blog">
+<meta property="og:description" content="Every Heat Pump Guides podcast episode, written up — read it or play it right on the page.">
+<meta property="og:url" content="https://heatpumpguides.com/blog/">
+<link rel="alternate" type="application/rss+xml" title="Heat Pump Guides podcast" href="https://anchor.fm/s/f8c1cc3c/podcast/rss">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Manrope-ExtraBold.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/Manrope-Regular.woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+{{ITEMLIST}}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#posts">Skip to posts</a>
+
+<!-- logo, defined once and referenced in the header and footer -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <linearGradient id="hpgTop" x1="0" y1="0" x2="662.881" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+    </linearGradient>
+    <linearGradient id="hpgBot" x1="662.881" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF1D26"/><stop offset="1" stop-color="#12699E"/>
+    </linearGradient>
+  </defs>
+  <symbol id="hpg" viewBox="0 0 663 80">{{LOGO_GLYPHS}}
+    <path d="M662.881 7.67119H0V0H662.881V7.67119Z" fill="url(#hpgTop)"/>
+    <path d="M0 80H662.881V72.3288H0V80Z" fill="url(#hpgBot)"/>
+  </symbol>
+</svg>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" aria-label="Heat Pump Guides — home">
+      <svg class="logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
+    </a>
+    <nav class="hdr-nav">
+      <a class="hdr-link hdr-link--keep" href="/blog/" aria-current="page">Blog</a>
+      <a class="hdr-link" href="/#episodes">Episodes</a>
+      <a class="hdr-link" href="/#states">States</a>
+      <a class="hdr-cta" href="https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ" target="_blank" rel="noopener">Listen</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="legal-head">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span>Blog</span>
+      </nav>
+      <h1>The Heat Pump Guides blog</h1>
+      <p class="lede blog-lede">Every episode of the podcast, written up. Read the article, or press play at the top of any post and listen right there — the full transcript is on every page too.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="sec" id="posts" aria-label="All posts">
+    <div class="wrap">
+      <p class="eyebrow blog-count">{{COUNT}} episodes</p>
+      <ul class="blog-list">
+        {{ROWS}}
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <svg class="logo ft-logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
+        <p class="ft-tag">A podcast about the most efficient heating and cooling technology we have — and how to actually get one installed.</p>
+      </div>
+      <div class="ft-socials">{{SOCIALS}}</div>
+    </div>
+    <div class="ft-base">
+      <p>© <span id="yr">2026</span> Heat Pump Guides</p>
+      <nav class="ft-links">
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="https://anchor.fm/s/f8c1cc3c/podcast/rss" target="_blank" rel="noopener">RSS</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

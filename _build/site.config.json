@@ -4,9 +4,24 @@
     "contactEmail    Public address. Appears on every state page CTA and both legal pages.",
     "governingState  State whose law governs the Terms. Should be the state of",
     "                incorporation, not whichever state page was built first.",
-    "legalUpdated    Date shown on /privacy and /terms. Bump when the text changes."
+    "legalUpdated    Date shown on /privacy and /terms. Bump when the text changes.",
+    "author          Byline on every blog post. url stays empty until the author page exists.",
+    "socials         Footer icons on every page, as [label, icon key in icons.json, url]."
   ],
   "contactEmail": "info@heatpumpguides.com",
   "governingState": "Massachusetts",
-  "legalUpdated": "September 8, 2026"
+  "legalUpdated": "September 8, 2026",
+  "author": {
+    "name": "Dylan Marshall",
+    "url": ""
+  },
+  "socials": [
+    ["Spotify", "spotify", "https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ"],
+    ["Apple Podcasts", "applepodcasts", "https://podcasts.apple.com/us/podcast/id1786858496"],
+    ["YouTube", "youtube", "https://www.youtube.com/@HeatPumpGuides"],
+    ["Instagram", "instagram", "https://www.instagram.com/heatpumpguides/"],
+    ["Threads", "threads", "https://www.threads.com/@heatpumpguides/"],
+    ["Facebook", "facebook", "https://www.facebook.com/HeatPumpGuides/"],
+    ["LinkedIn", "linkedin", "https://www.linkedin.com/company/heat-pump-guides/"]
+  ]
 }

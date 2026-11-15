@@ -23,15 +23,8 @@ const esc = (s) => String(s == null ? '' : s)
 
 const logoGlyphs = glyphs.map((d) => `\n    <path d="${d}" fill="currentColor"/>`).join('');
 
-const SOCIALS = [
-  ['Spotify', 'spotify', 'https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ'],
-  ['Apple Podcasts', 'applepodcasts', 'https://podcasts.apple.com/us/podcast/id1786858496'],
-  ['YouTube', 'youtube', 'https://youtube.com'],
-  ['Instagram', 'instagram', 'https://www.instagram.com/heatpumpguides/'],
-  ['Threads', 'threads', 'https://www.threads.com/@heatpumpguides/'],
-  ['Facebook', 'facebook', 'https://www.facebook.com/HeatPumpGuides/'],
-  ['LinkedIn', 'linkedin', 'https://www.linkedin.com/company/heat-pump-guides/'],
-];
+// Footer icons, shared with every generator via site.config.json.
+const SOCIALS = siteConfig.socials;
 const socials = SOCIALS.map(([name, key, href]) =>
   `<a class="ft-soc" href="${href}" target="_blank" rel="noopener" aria-label="${name}">`
   + `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${icons[key]}"/></svg></a>`
@@ -186,6 +179,7 @@ for (const [slug, s] of Object.entries(data)) {
     .replace(/\{\{INCENTIVES\}\}/g, incentives)
     .replace(/\{\{INCENTIVES_NOTE\}\}/g, incNote)
     .replace(/\{\{EP_MATCH\}\}/g, esc(JSON.stringify(s.episodes || [])))
+    .replace(/\{\{EP_EXCLUDE\}\}/g, esc(JSON.stringify(s.excludeEpisodes || [])))
     .replace(/\{\{META_DESC\}\}/g, esc(metaDesc))
     .replace(/\{\{INTRO\}\}/g, esc(s.intro))
     .replace(/\{\{COLD_NOTE\}\}/g, esc(coldNote))

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Heat pumps in {{NAME}} — Heat Pump Guides</title>
 <meta name="description" content="{{META_DESC}}">
-<link rel="canonical" href="https://heatpumpguides.com/{{SLUG}}">
+<link rel="canonical" href="https://heatpumpguides.com/{{SLUG}}/">
 <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
@@ -49,6 +49,7 @@
       <svg class="logo" viewBox="0 0 663 80" role="img" aria-label="Heat Pump Guides"><use href="#hpg"/></svg>
     </a>
     <nav class="hdr-nav">
+      <a class="hdr-link hdr-link--keep" href="/blog/">Blog</a>
       <a class="hdr-link" href="/#episodes">Episodes</a>
       <a class="hdr-link" href="/#states">States</a>
       <a class="hdr-cta" href="https://open.spotify.com/show/3lVeTOxvayjJ8xgR7nVGGZ" target="_blank" rel="noopener">Listen</a>
@@ -93,7 +94,7 @@
           <p class="lede">Homeowners and contractors in {{ABBR}}, in their own words.</p>
         </div>
       </div>
-      <div id="stEpisodes" data-match='{{EP_MATCH}}'></div>
+      <div id="stEpisodes" data-state="{{NAME}}" data-match='{{EP_MATCH}}' data-exclude='{{EP_EXCLUDE}}'></div>
     </div>
   </section>
 

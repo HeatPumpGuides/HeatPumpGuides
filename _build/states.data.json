@@ -24,9 +24,13 @@
     "  hpShareNote  Small print under the bar. State the method's limits here.",
     "  hpShareUrl   Link on the source label. Point at what actually supports the number.",
     "",
-    "  episodes     Match strings against the live RSS feed - an episode guid, or any",
-    "               distinctive fragment of the episode title. Empty array renders",
-    "               placeholder slots instead."
+    "  episodes     Episodes are attached AUTOMATICALLY: any episode whose title or",
+    "               description names the state (whole word, URLs ignored) shows up on",
+    "               its page on the next load - no rebuild. Use this array only to add",
+    "               an episode that never names the state: an episode guid, or any",
+    "               distinctive fragment of the title. Nothing matched renders slots.",
+    "  excludeEpisodes  Same kind of match strings, to keep an episode OFF this page",
+    "               when it only mentions the state in passing. Rebuild after editing."
   ],
   "massachusetts": {
     "name": "Massachusetts",
