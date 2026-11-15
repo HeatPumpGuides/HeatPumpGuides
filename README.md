@@ -15,6 +15,7 @@ build system and `DEPLOY.md` for the repo and hosting setup.
 | Legal | `/privacy`, `/terms` |
 | Apply | `/apply` — listener contact form, a Go High Level embed. Paste the embed into `_build/apply.embed.html`, run `node _build/mkapply.js`. The form's own dark styling lives in GHL (Custom CSS); the source copy is `_build/apply.ghl-custom.css` |
 | Episodes | Pulled live from the RSS feed in the browser; no server needed |
+| Blog | `/blog/` — one SEO article per episode at `/blog/<slug>/`, with an in-page player, Spotify/Apple/YouTube links and the full transcript. Homepage and state pages link episode titles to their post once it exists. Sources in `_build/blog/`, built by `node _build/mkblog.js`, which also writes `sitemap.xml` and `robots.txt` — see `_build/README.md` |
 
 ## Preview it
 
@@ -61,16 +62,20 @@ explaining how it was derived and what its limits are.
 1. **`governingState`** in `_build/site.config.json` is set to `Massachusetts` as a
    placeholder for the Terms' governing-law clause. Should be the state of
    incorporation. **Confirm before relying on the Terms.**
-2. **YouTube link** in the footer is `https://youtube.com` — a placeholder inherited
-   from the old site. Needs the real channel URL. Set it in `_build/build.js`,
-   `_build/mkstates.js` and `_build/mklegal.js` (the `SOCIALS` array in each).
+2. **Footer social links** now live once, in `_build/site.config.json` → `socials`.
+   The YouTube placeholder was replaced with `https://www.youtube.com/@HeatPumpGuides`
+   in September 2026.
 3. **`designTemp` is `null` for all 51 states.** ASHRAE 99% winter design temperature
    is the number that actually governs heat pump sizing, but it is not freely
    available. The stat is omitted rather than guessed; fill it in per state and it
    appears automatically.
-4. **Episode tagging.** Every state shows placeholder episode slots. To attach real
-   episodes, put a guid or a distinctive title fragment in that state's `episodes`
-   array — the page matches against the live feed on load, no rebuild needed.
+4. **Episode tagging is automatic.** Each state page reads the live feed on load and
+   shows any episode whose title or description names that state (whole words, links
+   ignored; West Virginia ≠ Virginia, Washington D.C. ≠ Washington). No rebuild or
+   upload needed when a new episode posts. Two overrides in `states.data.json`, each
+   a list of guids or title fragments, rebuild after editing: `episodes` adds an
+   episode that never names the state, `excludeEpisodes` removes one that only
+   mentions it in passing. States with no matches show placeholder slots.
 5. **Minnesota's incentive link** is the one URL never verified — the state site sits
    behind a CAPTCHA that blocks automated checks. Worth clicking once.
 6. **Git.** The first upload was done through GitHub's web UI. Switching to `git push`
