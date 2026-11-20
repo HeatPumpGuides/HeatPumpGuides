@@ -75,6 +75,16 @@ node _build/build.js
 
 Then preview (`python3 -m http.server 8765` in the site folder) and check: the post renders, the player plays, the transcript timestamps seek, and the homepage episode card links to the post.
 
+### Publish (git push, with Dylan's OK each time)
+
+This folder is a git checkout of `github.com/HeatPumpGuides/HeatPumpGuides` (`main`). Every push to `main` runs `.github/workflows/static.yml`, which republishes heatpumpguides.com within a minute or two. No more manual uploads.
+
+1. Commit everything: `git add -A && git commit -m "Add Episode N blog post (<topic>)"`.
+2. **Ask Dylan before pushing.** A push is a publish.
+3. `git push origin main`, then watch the deploy: `gh run watch <run id> -R HeatPumpGuides/HeatPumpGuides --exit-status`.
+4. If the "Deploy to GitHub Pages" step fails with "No artifacts named github-pages", that's a temporary GitHub problem: `gh run rerun <run id>` once. It happened on the first push (Ep 10), and the re-run succeeded.
+5. Confirm the post returns 200 on the live site.
+
 ---
 
 ## 2. State page check
@@ -130,4 +140,4 @@ Google's spam policy names "excessive link exchanges ('link to me and I'll link 
 - [ ] Previewed locally
 - [ ] State page shows the episode (pin the guid in `states.data.json` if not)
 - [ ] Interview: companion Google Doc created, then reviewed and sent by Dylan
-- [ ] Changed files uploaded to the live site by Dylan: `blog/`, `index.html`, `sitemap.xml`, any state folders rebuilt, `_build/`
+- [ ] Committed; Dylan approved the push; pushed; deploy run green; post live (200)
