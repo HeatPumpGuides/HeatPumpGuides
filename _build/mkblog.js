@@ -205,6 +205,19 @@ function card(p) {
         </li>`;
 }
 
+// Interview episodes: post.json -> guest { name, jobTitle, company, url, areaServed }
+function guestLd(g) {
+  if (!g.name) throw new Error('post.json guest: missing "name"');
+  const person = { '@type': 'Person', name: g.name };
+  if (g.jobTitle) person.jobTitle = g.jobTitle;
+  if (g.company) {
+    person.worksFor = { '@type': 'HVACBusiness', name: g.company };
+    if (g.url) person.worksFor.url = g.url;
+    if (g.areaServed) person.worksFor.areaServed = g.areaServed;
+  }
+  return person;
+}
+
 function jsonLd(p, words) {
   const url = SITE + p.url;
   const org = { '@type': 'Organization', '@id': SITE + '/#org', name: 'Heat Pump Guides', url: SITE + '/',
@@ -241,6 +254,7 @@ function jsonLd(p, words) {
         associatedMedia: { '@type': 'MediaObject', contentUrl: p.audio, encodingFormat: 'audio/mpeg', duration: isoDur(p.durS) },
         partOfSeries: { '@type': 'PodcastSeries', name: 'Heat Pump Guides', url: SITE + '/', webFeed: 'https://anchor.fm/s/f8c1cc3c/podcast/rss' },
         sameAs: [p.spotify, p.apple, p.youtube].filter(Boolean),
+        ...(p.guest ? { actor: guestLd(p.guest) } : {}),
       },
       {
         '@type': 'BreadcrumbList',

@@ -56,6 +56,7 @@ One folder per episode in `blog/`, named after the post's URL slug:
 | `post.json` | `guid` (the episode's RSS guid — ties the post to its audio, date and platform links), `slug`, `headline` (the h1), `subheading`, `seoTitle` (the `<title>`, ≤ 60 chars), `description` (meta, ≤ 155 chars), `published`, optional `updated`, `related` (up to 3 other slugs) |
 | `article.html` | The article body. Starts at `<h2>` — the headline is the page's h1. Headings may not skip a level. |
 | `transcript.txt` | One paragraph per line, `[m:ss] text`. The timestamps become buttons that play from that point. |
+| `post.json` → `guest` | Interview episodes only: `{ name, jobTitle, company, url, areaServed }`. Added to the episode's structured data. What to write is in `EPISODE-BLOG-SOP.md`. |
 
 `mkblog.js` refuses to build a post that would ship broken, and names the problem:
 an `<h1>` in the body, a skipped heading level, an internal link to a page that

@@ -1,1 +1,12 @@
+# macOS
+.DS_Store
+._*
 
+# editors
+.vscode/
+.idea/
+
+# never commit these from the parent folder
+*.mov
+*.zip
+.claude/
