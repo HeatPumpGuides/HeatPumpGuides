@@ -180,3 +180,9 @@ python3 -m http.server 8765
 
 Then open `http://localhost:8765/`. Use a server rather than opening the file
 directly — `file://` blocks the feed fetch.
+
+## Old-URL redirect stubs
+
+`privacy-policy.html`, `terms-of-service.html`, `savings-calculator.html`, `blog-home.html` and `about.html` at the site root are hand-written meta-refresh + canonical stubs for URLs from the old Webflow site (GitHub Pages can't do server 301s). GitHub Pages serves them at both `/name` and `/name.html`. They aren't generated and aren't in the sitemap — leave them alone.
+
+Internal links always use the trailing-slash form (`/vermont/`, `/privacy/`); the slashless form is a 301 on GitHub Pages and shows up in Search Console as "Page with redirect".

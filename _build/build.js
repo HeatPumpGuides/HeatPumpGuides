@@ -69,7 +69,7 @@ const epsJson = JSON.stringify(eps).replace(/<\//g, '<\\/');
 const states = JSON.parse(read('states.out.json'));
 const stateList = states.map((s) => {
   const label = s.name === 'District of Columbia' ? 'Washington DC' : s.name;
-  return `<li><a href="/${s.slug}"><span class="st-grid-a">${s.abbr}</span>${esc(label)}</a></li>`;
+  return `<li><a href="/${s.slug}/"><span class="st-grid-a">${s.abbr}</span>${esc(label)}</a></li>`;
 }).join('\n        ');
 
 // --- write ----------------------------------------------------------------

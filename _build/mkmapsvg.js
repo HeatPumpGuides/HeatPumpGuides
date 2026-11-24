@@ -86,7 +86,7 @@ const slugOf = (s) => s.slug;
 let paths = '', labels = '', callouts = '';
 
 for (const s of states) {
-  const href = '/' + slugOf(s);
+  const href = '/' + slugOf(s) + '/';
   paths += `<a class="st" href="${href}" data-st="${s.abbr}" aria-label="Heat pump episodes in ${esc(s.name)}">`
     + `<title>${esc(s.name)}</title><path d="${s.d}"/></a>`;
 
@@ -109,7 +109,7 @@ ordered.forEach((abbr, i) => {
   callouts += `<g class="st-callout" data-st="${abbr}">`
     + `<line class="st-leader" x1="${s.cx}" y1="${s.cy}" x2="${COL_X - 8}" y2="${y}"/>`
     + `<circle class="st-dot" cx="${s.cx}" cy="${s.cy}" r="2.4"/>`
-    + `<a href="/${slugOf(s)}" aria-label="Heat pump episodes in ${esc(s.name)}">`
+    + `<a href="/${slugOf(s)}/" aria-label="Heat pump episodes in ${esc(s.name)}">`
     + `<rect class="st-chip" x="${COL_X}" y="${y - 11.5}" width="${CHIP_W}" height="23" rx="4"/>`
     + `<text class="st-chip-t" x="${COL_X + 10}" y="${y}">${abbr}</text>`
     + `<text class="st-chip-n" x="${COL_X + 34}" y="${y}">${esc(s.name === 'District of Columbia' ? 'Washington DC' : s.name)}</text>`
